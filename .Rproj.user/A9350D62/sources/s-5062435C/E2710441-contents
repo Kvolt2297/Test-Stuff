@@ -1,0 +1,136 @@
+#Problem Set 5
+
+#----------Question 7----------------------------------------------------
+#-----------------Section d-----------------------------------------------
+walk<- c(-5.19, -1.20, -0.50, -0.33, -0.15, -0.15, -0.15, #assigning values
+        -0.07, 0.02, 0.02, 0.28, 0.37, 0.45, 1.76, 2.80)  #to an object
+
+walk.freq <- data.frame("turning angle" = walk) #making a data.frame fromm an 
+                                               #object
+ggplot(walk.freq, aes(x = walk.freq$turning.angle))+
+  geom_histogram(fill = "red", col = "black", binwidth = 0.25, #I can play with
+                 boundary = 0, closed = "left",)+              #graph width
+  labs(x = "Angle", y = "Frequency")+ #labelling
+  theme_classic()
+#-----------------Sectoin e------------------------------------------------
+#Using numbers from the object to calculate mean, median and mode
+#just for simplicity sake.
+mean(walk)   # -0.136
+sd(walk)     # 1.69
+median(walk) # -0.07
+sd(walk)/sqrt(length(walk)) # 0.436, calculating SE. A bit more complicated.
+
+#Aparently R does not have mode function that will serve my purposes. So I got 
+#to make a function for that.,,
+
+#Figuring out the mode.
+rmode <- function(v) {          #function(v) is saying to r that I am making new
+  uniqv <- unique(v)            #function for my use. It's stored under 
+  uniqv[which.max(tabulate(match(v, uniqv)))] # "Funcitons". (v) is a set of
+}                               #arguments, that are usually placeholders for
+rmode(walk)                     #objects. 
+#-0.15 is the mode.
+#unique function returns a set of numbers, but does not repeat duplicates
+#tabulate counts the number of times each number occurs. we ask to find most
+#frequent number and show it. 
+
+#------Question 1----------------------
+
+#--------------Section d---------------------------------------------------
+
+electric.fish<-read.csv(file.choose(), stringsAsFactors = FALSE)
+#openning file and assigning it to an object
+
+t.test(electric.fish$speciesDownstream, electric.fish$speciesUpstream, 
+       paired = TRUE)
+#All works well. Remember that if I want paired t-test, I must write "paired" 
+#after my data and state it as "TRUE". 
+var(electric.fish$speciesDownstream)
+var(electric.fish$speciesUpstream)
+var(electric.fish)
+sd(electric.fish$speciesUpstream)
+sd(electric.fish$speciesDownstream)
+  #Reversing two columns would yield different confidence intervals. It's just 
+#reverse though.
+
+#My output in R differs from the manual calculation of paired t-test. 
+#I've tried to re-do it and triple check the math, I don't know where I went
+#wrong with the manual math. Probably something to ask about.
+
+sd(electric.fish$speciesUpstream)
+sd(electric.fish$speciesDownstream)
+
+#------Question 3---------------------
+
+#------------------------Section e---------------------------
+beer.glass <- read.csv(file.choose(), stringsAsFactors = FALSE)
+
+ggplot(beer.glass,aes(beer.glass$glassShape, beer.glass$drinkingMinutes)) +  
+  geom_boxplot(fill = "purple", varwidth = TRUE, notch = FALSE)+ 
+  labs(x = "Glass Shape", y = "Drinking (min)") +
+  theme_classic()
+length(beer.glass$glassShape)
+
+#-----------------------Section d----------------------------
+
+t.test(beer.glass$drinkingMinutes ~ beer.glass$glassShape, var.equal = TRUE, 
+       na.rm = TRUE)
+#t = -3.3977, df = 17, p-value = 0.003425
+#95th  interval = -11.865 to -2.774
+#The value differs from the question d. Thus the conclusions would be different. 
+#In this case, it would seem that glass shape still has an impact, but in 
+#reducing drinking time, compared to increasing it from question d. 
+
+#--------Question 4 --------------------------------------------
+
+#Section c 
+
+salmon.data <- read.csv(file.choose(), stringsAsFactors = FALSE)
+#Making two seperate histograms for two species
+hist(salmon.data$skinColor[salmon.data$species == "sockeye"], 
+     breaks = seq(min(salmon.data$skinColor), max(salmon.data$skinColor), 
+                  length.out = 10))
+#Breaks = seq helps me to establish same axis measurments. Also length out 
+#helps with the compile the data together. 
+hist(salmon.data$skinColor[salmon.data$species == "kokanee"],
+     breaks = seq(min(salmon.data$skinColor), max(salmon.data$skinColor), 
+                  length.out = 10))
+
+#Section d
+aggregate(salmon.data$skinColor ~ salmon.data$species,  FUN = sd)
+#aggregate helps to separate two variables and conduct a fucntion on both
+#FUN simply applies a function onto all of the list that were seperated. 
+# Kokanee: SD = 0.2787, Sockeye: SD = 0.0649 
+
+t_salmon <- log(salmon.data$skinColor) #log transformation? 
+sd(t_salmon) #checking the sd of the vector
+#sd = 0.3042, different from the previous sd calculation. Now if I try it in the
+#aggregate fucntion?
+
+aggregate(t_salmon ~ salmon.data$species,  FUN = sd)
+
+#It seems that transforming log for salmon.data$skinColor does affect how 
+#aggregate calculates standard deviation. 
+
+#For unequal variances I should conduct Levene's test, while for the equal 
+#variance I should use f-test.
+
+#-----------------Question 5---------------------------------------
+
+#Section c 
+vuvuzela<-read.csv(file.choose(), stringsAsFactors = FALSE)
+
+vuvuzela.blow<-log10(vuvuzela$vuvuzelaParticleConcentration)
+#Doing log10 for the vuvuzela blowing group.
+vuvuzel.shout<-log10(vuvuzela$shoutingParticleConcentration)
+#Doing log10 for shouting group
+
+log.vuvuzela<-data.frame(vuvuzela.blow = vuvuzela.blow, 
+                         vuvuzel.shout = vuvuzel.shout)
+#putting this into a data frame so I can start calculating
+
+mean(log.vuvuzela)
+#arguemnt doesn't work
+
+#MORE COMMENTS
+#NOT FINISHED. MY APOLOGIES.
