@@ -30,13 +30,16 @@ d <- read.csv(paste(path.data, "BirdWindowCrash (1).csv", sep = ""),
 #Make a graph and send it to the figures folder
 
 dd <-rnorm(10, 5, 2)
-pdf(paste(path.figure("/2 Figures/testgraph.pdf")), width = 5, height = 5)
+
+pdf(paste(path.figure, "/testgraph.pdf", sep=""), 
+            width = 5, height = 5)
+
 #Make the graph
-plot(dd)
+plot(1, 2)
 dev.off() #ends the graphing session
 #now saved
 
-list(path.figure)
+
 
 #look it up from Thor's examples
 
