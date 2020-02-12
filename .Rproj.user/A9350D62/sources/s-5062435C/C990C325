@@ -1,0 +1,26 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1581462098992.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "255480621",
+    "id" : "C990C325",
+    "lastKnownWriteTime" : 1581545831,
+    "last_content_update" : 1581545831141,
+    "path" : "C:/Users/Kirill (Kvolt)/Desktop/Test Stuff/R Statistics/Dealing with Weather.R",
+    "project_path" : "R Statistics/Dealing with Weather.R",
+    "properties" : {
+        "cursorPosition" : "98,0",
+        "scrollLine" : "78",
+        "tempName" : "Untitled2"
+    },
+    "read_only" : false,
+    "read_only_alternatives" : [
+    ],
+    "relative_order" : 5,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

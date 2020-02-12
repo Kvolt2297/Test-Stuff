@@ -1,0 +1,112 @@
+dir.create()#Create a new direcotry
+
+write.csv() #if you give name, it will save in working directory
+
+wd<-getwd() #get to working directory. Shows you where your working directory is 
+            #at
+
+paste("A", "B", sep="_")
+
+#
+# add name
+# Version of R
+#
+#
+
+
+wd<-getwd()
+#Let's make folders
+dir.create("2 Figures")
+dir.create("1 Data")
+
+# Make Paths to folder 
+path.data <- paste(wd, "/1 Data", sep="")
+list.files(path.data)
+
+path.figure <- paste(wd, "/2 Figures", sep="")
+d <- read.csv(paste(path.data, "BirdWindowCrash (1).csv", sep = ""),
+              stringsAsFactors = FALSE)
+
+#Make a graph and send it to the figures folder
+
+dd <-rnorm(10, 5, 2)
+pdf(paste(path.figure("/2 Figures/testgraph.pdf")), width = 5, height = 5)
+#Make the graph
+plot(dd)
+dev.off() #ends the graphing session
+#now saved
+
+list(path.figure)
+
+#look it up from Thor's examples
+
+
+
+#---------------------------------------GitHub---------------------------
+
+install.packages("weathercan") 
+install.packages("devtools") 
+devtools::install_github("ropensci/weathercan")
+head(stations)
+devtools::install_github("ropensci/weathercan", build_vignettes = TRUE) 
+vignette(package = "weathercan") #available vignettes
+install.packages("Rtools")
+vignette("weathercan", package = "weathercan") #view particular vignette
+
+library(weathercan)
+head(stations)
+stations_search("Kamloops", interval = "hour")
+stations_search(coords = c(50.667492, -120.329049), 
+                           dist = 20, interval = "hour")
+
+weathercan::kam<-weather_dl(station_ids = 51423, 
+                              start = "2018-02-01", end = "2018-04-15")
+
+kam_pg <- weather_dl(station_ids = c(48248, 51423), start = "2018-02-01",
+                     end = "2018-04-15")
+?weather_dl
+
+weather_dl(station_ids = 51423, start = "2018-02-01", end = "2018-04-15")
+
+#assignment 
+citation("weathercan") #site the source
+#Section a-------------------------------------------------------------
+
+#Trying download a data and assign it to the object, based on coordinates
+weather <-weathercan::weather_dl(station_ids = coords = c(50.667492,-120.329049, 
+                                  start = "2018-02-01", end = "2018-04-15")
+#Looking for stations and their information
+weathercan:: stations_search ("Vancouver")
+weathercan:: stations_search ("Squamish")   #Squamish, I choose you!
+weathercan:: stations_search ("Pemberton")
+kam_pg <- weather_dl(station_ids = c(48248, 51423), start = "2018-02-01",
+                     end = "2018-04-15")
+
+#Acquiring data from Squamish station 337, in days, from 1959 to 1960.
+Squamweather <- data.frame(weathercan:: weather_dl(station_ids = 337, 
+                                    interval = "day",
+                                    start = "1959-01-01", end = "1960-12-01"))
+                                        
+list(Squamweather$year)
+
+#-----------------------------Section b-------------------------------------
+
+#Trying to get graph for the Squamish  
+
+na.Squam <- which(is.na(Squamweather))
+list(na.Squam)
+
+ggplot(na.omit(Squamweather$max_temp), aes(x = "day", y = "Max Temp")
+  theme_minimal() + 
+  geom_line() 
+
+geom_path(na.rm = TRUE)
+
+plot(Squamweather$day, Squamweather$max_temp, na.rm=TRUE)
+
+list(Squamweather)
+
+write.csv(Squamweather,paste(dir(), "Squamish.csv", sep =""))
+
+
+

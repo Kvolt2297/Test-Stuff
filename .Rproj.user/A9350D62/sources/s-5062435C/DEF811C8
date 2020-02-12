@@ -1,0 +1,26 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1581430441914.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "DEF811C8",
+    "lastKnownWriteTime" : 1581419910,
+    "last_content_update" : 1581419910,
+    "path" : "C:/Users/Kirill (Kvolt)/Desktop/R Statistics/Day 2/Volodko_Workshop 2.R",
+    "project_path" : null,
+    "properties" : {
+        "cursorPosition" : "126,35",
+        "scrollLine" : "103",
+        "tempName" : "Untitled1"
+    },
+    "read_only" : false,
+    "read_only_alternatives" : [
+    ],
+    "relative_order" : 3,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

@@ -1,0 +1,207 @@
+#Kirill Volodko
+#Take Home Exam
+
+#---------------Question 2-----------------------------------------------------
+
+#Section c------------------------------
+
+bmi.value <- c(53, 54, 55, 56, 58, 60, 63, 64, 62, 62, 62)
+bmi.year <- c(1995, 1996, 1997, 1998, 1999, 2000, 2001, 2002, 2003, 2004, 2005)
+
+bmi.freq <- data.frame(bmi.year = bmi.year, bmi.value = bmi.value, 
+                       stringsAsFactors = FALSE)
+
+barplot(bmi.value ~ bmi.year, col = "red", x = "Year", y = "Body Mass Index",
+        ylim = c(0,70))
+
+#---------------Question 3-----------------------------------------------------
+
+#Section a-------------------------------
+
+#Getting the data from excel
+seed.spread <- read.csv(file.choose(), stringsAsFactors = FALSE)
+
+successful.spread <- seed.spread$Successful.dispersion
+physalis <- seed.spread$Physalis
+durian <- seed.spread$Durian
+
+#Making a scatter plot
+plot(seed.spread$Physalis[seed.spread$Successful.dispersion],
+     col = "Blue",
+     xlab = "Number of Successful Dispersion", ylab = "Frequency",
+     xlim = c(0,7), ylim = c(0,50),
+     pch=19,
+     legend(1, 45, legend = c("Physalis", "Durian"), col = c("blue", "Red"),
+            fill = c("red", "blue")))
+points(seed.spread$Durian[seed.spread$Successful.dispersion], 
+       col = "Red", pch=19) #adding durina into the polot
+points(0, 12, col="Blue", pch=19) #plot refuses to plot the first row
+points(0, 4, col = "Red", pch=19) #So I have to input it manually
+
+#Section b--------------------------
+
+#Finding Mean
+sum(seed.spread$Physalis)/length(seed.spread$Physalis) #Mean for Physalis
+# Mean = 11.875
+
+sum(seed.spread$Durian)/length(seed.spread$Durian) #Mean for Durian
+# Mean = 12.125
+
+#Section c---------------------------
+
+#Variance for Physalis
+(sum(( seed.spread$Physalis-mean(seed.spread$Physalis))^2 ) /  
+     (length(seed.spread$Physalis)-1))
+# Var = 76.41
+
+#Variance for Durian
+(sum(( seed.spread$Durian-mean(seed.spread$Durian))^2 ) /  
+        (length(seed.spread$Durian)-1))
+# Var = 248.7
+
+#Finding SD for Physalis
+sqrt(sum(( seed.spread$Physalis-mean(seed.spread$Physalis))^2 ) /  
+         (length(seed.spread$Physalis)-1))
+# SD = 8.741
+
+#Finding SD for Durian
+sqrt(sum(( seed.spread$Durian-mean(seed.spread$Durian))^2 ) /  
+         (length(seed.spread$Durian)-1))
+# SD = 15.77
+
+
+#Section e------------------------
+
+#FInding median 
+
+#Median for Physalis
+sort(seed.spread$Physalis) 
+seed.spread$Physalis[1:8] <- sort(seed.spread$Physalis)
+mean(seed.spread$Physalis[4:5]) #Find medium between 4th and 5th number in the vector
+# Median = 10 
+
+
+#Median for Durian
+sort(seed.spread$Durian) 
+seed.spread$Durian[1:8] <- sort(seed.spread$Durian)
+mean(seed.spread$Durian[4:5]) 
+# Median - 6
+
+#Section g------------------------
+
+#Calculating SE for Physalis
+sqrt(sum(( seed.spread$Physalis-
+               sum(seed.spread$Physalis)/length(seed.spread$Physalis))^2 ) /  
+         (length(seed.spread$Physalis)-1))/sqrt(length(seed.spread$Physalis))
+# SE = 3.09
+
+#Calculating SE for Durian
+sqrt(sum(( seed.spread$Durian- 
+               sum(seed.spread$Durian)/length(seed.spread$Durian))^2 ) /  
+         (length(seed.spread$Durian)-1)) / sqrt(length(seed.spread$Durian))
+# SE = 5.58
+
+#Calculating Confidence Interval
+
+#Physalis
+t.test(seed.spread$Physalis)
+# Confidence Interval: 4.57<11.875<19.18
+
+t.test(seed.spread$Durian)
+# Confidence Interval: -1.06 < 12.125 < 25.3
+
+#We can reject null hypothesis for physalis, as it's confidence interval does 
+#not cross the null value (0)
+
+#We cannot reject null hypothesis for durian, as it does croess it's confidence
+#interval with null hypothesis value (0), which make it uncertaint. 
+
+#--------------Question 5
+
+#Section a ---------------------------------
+
+# Out of 9821, 6101 landed butter side down
+
+#Binomial Distribution
+butter.proportion <- 6101/9821 
+#0.621
+
+p <- (6101+2)/(9821+4)
+#0.621
+
+p -1.96*sqrt(p*(1-p)/(9821+4))
+p + 1.96*sqrt(p*(1-p)/(9821+4))
+# Confidence Interval: 0.612 and 0.631
+
+#Check by binomial distribution
+binom.test(6101, 9821, p = 0.5, alternative = "two.sided")
+#Confidence Interval: 0.612 and 0.631
+
+#---------------------Question 6
+
+#Section b
+
+termites<-read.csv(file.choose(), stringsAsFactors = FALSE)
+#Calculating total for each column and row
+#Column
+sum(termites$Unharmed)
+# 34 
+sum(termites$Immobilized)
+#46
+#Row
+
+#Blue Workers
+3+37
+#40 
+
+#White Workers
+31+9
+#40 
+
+#Calculating expected frequency for each category
+expected.unharm<- c((34/80*40/80)*3, 34/80*40/80*31)
+expected.harm <- c(46/80*40/80*37, 46/80*40/80*9)
+
+#Making an expected frequency table
+expected.termite <- data.frame(expected.unharm, expected.harm)
+
+fisher.test(expected.termite)
+#p-value = 0.006192 . We have to reject null hypothesis for no association
+
+#------------------------Question 7---------------------------------------
+#Section b------------------------------
+#I did calculations in the word doc...
+
+#----------------------Question 8-----------------------------------------
+#Section b--------------------------
+#Making a Normal Distribution
+
+# v = sd
+# z = mean 
+# y = value?
+
+sd(1:5)
+
+normal.distr <- function(Y, z,v) {
+ A <- sqrt(2*pi*v^2) 
+ B <- exp(1)^-((z-Y)^2/(2*v^2))
+ Y <- ((1 / (A))*(B)) 
+ return(Y)
+ }
+
+normal.distr(2,2, 2) #comparison check
+dnorm(2, mean = 2, sd = 2) #comparison check
+#This works!!! for 1, 1, 1
+#Edit: Nope, it does not work well yet. SD is off
+#Edit 2: FIXED IT. NOW IT TOTALLY WORKS WOHOO
+
+# Section c 
+#Making a Normal Distribution
+x <- seq(-3, 3, length=100)
+test<-normal.distr(x,0,1)
+colors <- c("red")
+plot(x, test, type="l", lty=2, xlab="x value",
+     ylab="Density", main="Normal Distributions")
+#Critical Value line at 2.5%
+abline(v = -1.96, col = "red", )
+abline(v = 1.96, col = "red")

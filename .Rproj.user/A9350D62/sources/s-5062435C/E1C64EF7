@@ -1,0 +1,25 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1581430465600.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "199|45|297|0|\n",
+    "hash" : "0",
+    "id" : "E1C64EF7",
+    "lastKnownWriteTime" : 1581453131,
+    "last_content_update" : 1581453131594,
+    "path" : "C:/Users/Kirill (Kvolt)/Desktop/R Statistics/Introduction/Volodko_R Library.R",
+    "project_path" : null,
+    "properties" : {
+        "cursorPosition" : "192,0",
+        "scrollLine" : "169"
+    },
+    "read_only" : false,
+    "read_only_alternatives" : [
+    ],
+    "relative_order" : 2,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

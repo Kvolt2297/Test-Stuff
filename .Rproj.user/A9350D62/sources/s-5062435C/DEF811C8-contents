@@ -1,0 +1,132 @@
+#Assignment 2
+#Sparrow LRS
+LRS <- read.csv(file.choose(), stringsAsFactors = FALSE) #this did not work out to import the excel, but I managed to import it manually through files (bottom right box)
+mean(Sparrow_Stuff$Females) #Calculating mean for Females column
+mean(Sparrow_Stuff$Males)  #Calculating mean for Males column
+var(Sparrow_Stuff$Females) #Sample Variance for Female
+var(Sparrow_Stuff$Males) #Sample Variance for male. Apparently it is wrong dude
+
+var(Sparrow_Stuff$Females[4<=Sparrow_Stuff$`Lifetime reproductive success`]) #Finding variance in females that have 4 or more LRS
+var(Sparrow_Stuff$Males[4<=Sparrow_Stuff$`Lifetime reproductive success`])
+#Beetles
+NightVisit<-c(1,2,3,4,5,6,7,8,9,10)
+Beetles<-c(51,45,61,76,11,117,7,132,52,149)
+mean(Beetles)
+##70.1
+sd(Beetles)
+##48.5
+BSE<-sd(Beetles)/sqrt(10) #Calculating estimated standard error for the beetles
+##15.3
+mean(Beetles)-2*BSE
+## 39.4
+mean(Beetles)+2*BSE
+## 101
+BeetleVisits <- data.frame(NightVisit=NightVisit, Beetles=Beetles, stringsAsFactors = FALSE) #Turn my vector into data frame
+hist(BeetleVisits$Beetles)
+
+NewBeetle<-rnorm(25, mean(Beetles), sd(Beetles))
+sd(NewBeetle)
+#44.67
+sd(NewBeetle)/sqrt(25)
+#8.93
+NewBeetle<-rnorm(50, mean(Beetles), sd(Beetles))
+sd(NewBeetle)
+#47.67
+sd(NewBeetle)/sqrt(50)
+#6.7
+1.81-2*(1.13/sqrt(33))
+
+# Workshop 2.1
+Mammals<-read.csv(file.choose(), na="", stringsAsFactors = FALSE)
+head(Mammals)
+table(Mammals$continent) #Looking at how many mammal species are in the continent
+#Insular has the largest species population of 1484. The least comes from Oceanic, with 78 species.
+which(Mammals$continent == "Af") #Finding spelling mistake 
+Mammals$continent[Mammals$continent == "Af"] <- "AF" #Fixing the spelling mistake
+Mammals$continent<-droplevels(Mammals$continent)
+dead<-grep("extinct", Mammals$status)
+length(dead)
+table(Mammals$status)
+#242 extinct species were recorded
+table(Mammals$continent, Mammals$status) # Creating a double sided frequency table. whatever is input first will be on the left column, while the second data will be on the top.
+#NA has biggest number of extinctions relative to extant
+
+#Workshop 2.2
+##ggplot(Mammals, aes (x = Mammals$continent, y = Mammals$species), ylab("Species Count")) + #Doesn't work with Y= after aes
+ggplot(Mammals, aes (x = Mammals$Continent_ordered))+  #It's important to include + when you want to add/change things to the bar graph
+       labs(x = "Continent", y="Species Count") + #labs is for changing labels
+  geom_bar(stat="count") + #Still have no clue what it is, but without it the graph doesn't happen. Followed it from the graphs tip page. 
+  theme_classic() #Making it classy 
+
+#Putting graph in order
+Mammals$Continent_ordered <-factor(Mammals$continent, levels = names(sort(table(Mammals$continent), decreasing = TRUE))) 
+#ordering continents according to their factor values. This creates a new vector within the data frame.
+
+#hist(Mammals$mass.grams, right = FALSE, breaks = 2)        A lot of details lost, when changing it to 2 units wide
+hist(Mammals$mass.grams, right = FALSE, breaks = 150) #breaks don't work with values below 1. Thus I need to create a new historgram...
+Mammals$mass.grams <- log10(Mammals$mass.grams) #Transform the mass.grams into a log of 10. 
+
+ggplot(Mammals, aes(x = Mammals$mass.grams))+
+  geom_histogram(fill = "red", col = "black", binwidth = 0.1, boundary = 0, closed = "left")+
+  labs(x = "Mammals Mass", y = "Frequency")
+#Seems like 0.1 gives most amount of data, so it is superior over 1 and 0.5
+
+ggplot(Mammals, aes(x = Mammals$mass.grams))+ #Important that after aes(), you put "x=" inside the bracket.
+  geom_histogram(fill = "red", col = "black", binwidth = 0.1, boundary = 0, aes(y = ..density..), closed = "left") + #Turning frequencies into a density
+  labs(x = "Log10 Body Mass", y = "Density")
+  
+ggplot(Mammals, aes(sample = Mammals$mass.grams))+ #creating quantile plot. 
+  geom_qq() +
+  geom_qq_line() + 
+  theme_dark()
+#Quantile plot seems to be better to get the general idea of trends and patterns, but histogram density seems to be more informative and detailed. 
+# I will challange myself with the optional question for later time
+
+#Workshop 2.3
+ggplot(Mammals, aes(y = Mammals$mass.grams, x = Mammals$status)) +
+  geom_boxplot(fill = "purple", varwidth = TRUE, notch = FALSE) +
+  labs(x = "Status", y = "Log10 Body Mass")
+#According to the boxplot, the extinct animals were larger than extant ones. 
+# It seems that extinct animals were generally all bigger than extant. Their body size distributions is has bigger quarile than the extant ones. 
+# However some extant outliers do happen to be larger than extinct mammals.
+ggplot(Mammals, aes(y = Mammals$mass.grams, x = Mammals$status)) + #Method on how to do a violin plot.
+  geom_violin(fill = "purple") +
+  stat_summary(fun.y = mean, geom = "point", color = "black")+
+  labs(x = "Status", y = "Log10 Body Mass")
+
+#Mutliple histograpms
+ggplot(Mammals, aes(x = Mammals$mass.grams))+
+  geom_histogram(fill = "red", col = "black", binwidth = 0.1, boundary = 0, closed = "left")+
+  labs(x = "Mammals Mass", y = "Frequency")+
+  facet_wrap(~Mammals$status, ncol = 1, scales = "free_y")+ 
+  theme_classic()
+#Finding Medians (Attempt)
+table(median(Mammals$mass.grams[Mammals$status]))
+table(Mammals$status(c("AF"), Mammals$mass.grams)
+table(length(Mammals$mass.grams)
+median(length(Mammals$mass.grams))      
+median(Mammals$mass.gram, na.rm = TRUE) #Finally got it. I forgot that there were missing data.
+median(Mammals$mass.grams[Mammals$status(grep("extinct"))], na.rm = TRUE) #I am taking to long to figure this out for now.
+tapply(Mammals$mass.grams, Mammals$status, , na.rm = TRUE)
+# Workshop 2.4
+fruitfly<-read.csv(file.choose(), stringsAsFactors = FALSE)
+#Making a strip chart
+ggplot(fruitfly, aes(fruitfly$treatment, fruitfly$longevity.days)) + 
+  geom_jitter(color = "firebrick", size = 3, width = 0.15)+
+labs(x ="Treatment", y="Longitivity")
+sa
+
+#Making a box plot
+ggplot(fruitfly, aes(y = fruitfly$longevity.days, x = fruitfly$treatment)) +
+  geom_boxplot(fill = "purple", varwidth = TRUE, notch = FALSE) +
+  labs(x = "Treatment", y = "Longitivity")
+#The data is quite clear on the both of the graphs. However the strip chart gives me more details about every data entry.
+
+#Scatter Plot
+ggplot(fruitfly,aes(fruitfly$thorax.mm, fruitfly$longevity.days, colour = treatment, shape = treatment)) +  #coulour = treatment, shape = treatment add a legend and colorize the variables
+  geom_point(size = 2, alpha = 0.5) + 
+  geom_smooth(method = "lm", size = 1, se = FALSE) + #This adds the regression line for each of the group.
+  labs(x = "Thorax Size (mm)", y = "Longetivity") + 
+  theme(aspect.ratio = 0.80) + 
+  theme_classic()
+

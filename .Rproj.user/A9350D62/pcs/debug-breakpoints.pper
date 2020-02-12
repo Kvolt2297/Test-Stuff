@@ -1,0 +1,21 @@
+{
+    "debugBreakpointsState" : {
+        "breakpoints" : [
+            {
+                "editor_line_number" : 143,
+                "editor_state" : 1,
+                "function_name" : "toplevel",
+                "function_steps" : "",
+                "id" : 0,
+                "is_package_breakpoint" : false,
+                "is_pending_debug_completion" : false,
+                "line_number" : 143,
+                "needs_updated_steps" : true,
+                "package_name" : "",
+                "path" : "C:/Users/Kirill (Kvolt)/Desktop/R Statistics/Day 4/Volodko_Day 4.R",
+                "state" : 1,
+                "type" : 1
+            }
+        ]
+    }
+}
