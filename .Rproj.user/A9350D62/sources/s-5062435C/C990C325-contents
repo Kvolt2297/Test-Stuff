@@ -108,5 +108,5 @@ list(Squamweather)
 
 write.csv(Squamweather,paste(dir(), "Squamish.csv", sep =""))
 
-
+#POTATOES
 
