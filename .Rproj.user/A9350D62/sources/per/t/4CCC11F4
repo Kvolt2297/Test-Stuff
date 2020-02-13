@@ -1,0 +1,26 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1581574534574.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "3529584684",
+    "id" : "4CCC11F4",
+    "lastKnownWriteTime" : 1581576122,
+    "last_content_update" : 1581576122490,
+    "path" : "C:/Users/Kirill (Kvolt)/Desktop/Test Stuff/Big Group Data Project/Raw Data/Anxiety and Depression prevalence.R",
+    "project_path" : "Big Group Data Project/Raw Data/Anxiety and Depression prevalence.R",
+    "properties" : {
+        "cursorPosition" : "5,21",
+        "scrollLine" : "0",
+        "tempName" : "Untitled2"
+    },
+    "read_only" : false,
+    "read_only_alternatives" : [
+    ],
+    "relative_order" : 7,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}
