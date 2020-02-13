@@ -35,7 +35,7 @@ pdf(paste(path.figure, "/testgraph.pdf", sep=""),
             width = 5, height = 5)
 
 #Make the graph
-plot(1, 2)
+plot(dd)
 dev.off() #ends the graphing session
 #now saved
 
@@ -99,11 +99,9 @@ list(Squamweather$year)
 na.Squam <- which(is.na(Squamweather))
 list(na.Squam)
 
-ggplot(na.omit(Squamweather$max_temp), aes(x = "day", y = "Max Temp")
+ggplot(na.omit(Squamweather$max_temp), aes(x = "day", y = "Max Temp") +
   theme_minimal() + 
   geom_line() 
-
-geom_path(na.rm = TRUE)
 
 plot(Squamweather$day, Squamweather$max_temp, na.rm=TRUE)
 

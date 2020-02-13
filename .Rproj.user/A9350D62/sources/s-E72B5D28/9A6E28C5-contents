@@ -1,0 +1,31 @@
+#
+# Simulate Data
+#
+
+#Plot layout and details
+#Coulour 
+#Heat plot
+#Multipanel graphics
+
+#General Layout
+
+mA<-par(mar = c(2,3,3,2), oma= c(3, 3, 3, 3))
+
+plot(mA)
+
+#Control Graph
+xlim / ylim
+xlab/ylab
+pch/ltw
+cex
+par() #is the key!
+axis() #make new axi
+text()/mtext() # allows for adding text. mtext is margin text
+
+
+
+xlim.t <- range (x)
+ylim.t <- range(y)
+
+
+data.stuff<- file.choose()
