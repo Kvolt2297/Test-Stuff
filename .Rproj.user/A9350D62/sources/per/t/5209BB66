@@ -1,0 +1,33 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1581711422708.000,
+    "dirty" : false,
+    "encoding" : "",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "5209BB66",
+    "lastKnownWriteTime" : 1665923384552,
+    "last_content_update" : 1581711422708,
+    "path" : null,
+    "project_path" : null,
+    "properties" : {
+        "cacheKey" : "C108290",
+        "caption" : "mental.global",
+        "contentUrl" : "grid_resource/gridviewer.html?env=&obj=mental.global&cache_key=C108290",
+        "displayedObservations" : "6468",
+        "environment" : "",
+        "expression" : "mental.global",
+        "object" : "mental.global",
+        "preview" : "0",
+        "totalObservations" : "6468",
+        "variables" : "9"
+    },
+    "read_only" : false,
+    "read_only_alternatives" : [
+    ],
+    "relative_order" : 6,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_dataframe"
+}

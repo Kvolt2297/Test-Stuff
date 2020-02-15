@@ -2,18 +2,18 @@
     "collab_server" : "",
     "contents" : "",
     "created" : 1581419976621.000,
-    "dirty" : false,
+    "dirty" : true,
     "encoding" : "UTF-8",
-    "folds" : "3|26|4|0|\n5|10|15|0|\n16|26|17|0|\n18|10|39|0|\n40|10|48|0|\n49|10|71|0|\n72|10|88|0|\n89|10|119|0|\n120|11|169|0|\n171|10|173|0|\n",
-    "hash" : "0",
+    "folds" : "3|26|4|0|\n5|10|15|0|\n16|26|17|0|\n40|10|48|0|\n49|10|71|0|\n72|10|88|0|\n89|10|119|0|\n120|11|169|0|\n171|10|173|0|\n174|33|174|74|\n175|10|207|0|\n",
+    "hash" : "3074503216",
     "id" : "875B473A",
     "lastKnownWriteTime" : 1581546833,
-    "last_content_update" : 1581546833725,
+    "last_content_update" : 1581754726640,
     "path" : "C:/Users/Kirill (Kvolt)/Desktop/R Statistics/Volodko_HomeExam.R",
     "project_path" : null,
     "properties" : {
-        "cursorPosition" : "204,0",
-        "scrollLine" : "0"
+        "cursorPosition" : "34,35",
+        "scrollLine" : "4"
     },
     "read_only" : false,
     "read_only_alternatives" : [

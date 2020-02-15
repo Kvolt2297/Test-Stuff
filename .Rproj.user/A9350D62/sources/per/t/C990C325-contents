@@ -111,3 +111,5 @@ write.csv(Squamweather,paste(dir(), "Squamish.csv", sep =""))
 
 #POTATOES
 
+rnorm(c(1,2,3,4,5))
+v<-rep(1:5)
