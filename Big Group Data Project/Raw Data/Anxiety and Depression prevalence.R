@@ -100,4 +100,20 @@ points(mental.global[c(953:980),c(3,7)], col = "Purple", pch = 2) #Canada anxiet
 points(mental.global[c(953:980),c(3,9)], col = "Green", pch = 2) #Canada depression
 
 #line of best fit? 
-       
+
+
+#Getting only data that we need (country, year, anxiety and depression)
+test<-data.frame(mental.global.2017[ ,c(1,3,7,9)])
+test
+
+#Running Global Correlation
+cor(mental.global.2017[,10], mental.global.2017[,9])  #Depression/Alcohol 
+# -0.01630034 
+
+i <- 1
+for(i in 1:7) {
+  test.cor<-rep(cor(mental.global.2017[], mental.global.2017[, c(i+3)]) 7)
+  print(test.cor)
+  }
+
+length(mental.global.2017[,4:10])

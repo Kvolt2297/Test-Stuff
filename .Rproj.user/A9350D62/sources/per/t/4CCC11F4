@@ -5,21 +5,21 @@
     "dirty" : false,
     "encoding" : "UTF-8",
     "folds" : "",
-    "hash" : "3880544573",
+    "hash" : "711545653",
     "id" : "4CCC11F4",
-    "lastKnownWriteTime" : 1581755021,
-    "last_content_update" : 1581755021057,
+    "lastKnownWriteTime" : 1581815444,
+    "last_content_update" : 1581815444765,
     "path" : "C:/Users/Kirill (Kvolt)/Desktop/Test Stuff/Big Group Data Project/Raw Data/Anxiety and Depression prevalence.R",
     "project_path" : "Big Group Data Project/Raw Data/Anxiety and Depression prevalence.R",
     "properties" : {
-        "cursorPosition" : "101,19",
-        "scrollLine" : "71",
+        "cursorPosition" : "119,0",
+        "scrollLine" : "89",
         "tempName" : "Untitled2"
     },
     "read_only" : false,
     "read_only_alternatives" : [
     ],
-    "relative_order" : 7,
+    "relative_order" : 3,
     "source_on_save" : false,
     "source_window" : "",
     "type" : "r_source"

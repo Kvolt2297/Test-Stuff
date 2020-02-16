@@ -203,5 +203,6 @@ colors <- c("red")
 plot(x, test, type="l", lty=2, xlab="x value",
      ylab="Density", main="Normal Distributions")
 #Critical Value line at 2.5%
-abline(v = -1.96, col = "red", )
+abline(v = -1.96, col = "red",)
 abline(v = 1.96, col = "red")
+

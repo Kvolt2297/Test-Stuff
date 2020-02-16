@@ -12,14 +12,14 @@
     "path" : "C:/Users/Kirill (Kvolt)/Desktop/Test Stuff/R Statistics/Dealing with Weather.R",
     "project_path" : "R Statistics/Dealing with Weather.R",
     "properties" : {
-        "cursorPosition" : "113,19",
+        "cursorPosition" : "96,39",
         "scrollLine" : "85",
         "tempName" : "Untitled2"
     },
     "read_only" : false,
     "read_only_alternatives" : [
     ],
-    "relative_order" : 5,
+    "relative_order" : 2,
     "source_on_save" : false,
     "source_window" : "",
     "type" : "r_source"
