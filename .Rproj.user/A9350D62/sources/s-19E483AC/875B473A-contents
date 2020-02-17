@@ -116,7 +116,7 @@ t.test(seed.spread$Durian)
 #We cannot reject null hypothesis for durian, as it does croess it's confidence
 #interval with null hypothesis value (0), which make it uncertaint. 
 
-#--------------Question 5
+#--------------Question 5----------------------------------
 
 #Section a ---------------------------------
 
@@ -137,7 +137,7 @@ p + 1.96*sqrt(p*(1-p)/(9821+4))
 binom.test(6101, 9821, p = 0.5, alternative = "two.sided")
 #Confidence Interval: 0.612 and 0.631
 
-#---------------------Question 6
+#---------------------Question 6-------------------------------
 
 #Section b
 
