@@ -491,4 +491,91 @@ library(expss)
         
         hardcore <- cro(upper.2017$Schizophrenia, upper.2017$Anxiety)
 ?cro
-        
+      
+          
+          
+          
+          #Running it through multiple years
+          Global.ment.years = subset(mental.global, select = -c(Entity,Code))
+          
+          
+          ### meee ####
+          
+          all.country <- d.t
+          all.country
+          
+          years <- unique(all.country$Year)
+          years
+          yearss <- c(years)
+          yearss
+          
+          #reset i
+          i <- 1
+          ind <- 1
+          
+          for(i in 1:28){
+            ind <- 1
+            for(ind in 1:201){
+              if(all.country$Year[ind] == yearss[i]){
+                corr.tttt <- cor(all.country[all.country$Year == yearss[i],c(4:9)])
+                
+              }
+              
+              ind <- ind + 1 
+            }
+          }
+          
+          corr.t
+          corr.tt
+          all.country
+          i
+          corr.tttt
+          
+          warnings()
+          
+          
+          for(ind in 1:201){
+            if(any(all.country$Year == 2017)){
+              corr.ttt <- cor(all.country[,c(4:9)])
+            }
+          }
+          any(all.country$Year == 2000)
+          corr.ttt
+          
+          for(ind in 1:201){
+            if((all.country$Year == 2017)){
+              corr.ttt <- cor(all.country[,c(4:9)])
+            }
+          }
+          
+          ## THIS IS THE LATEST/BEST VERSION, EXCHANGE 2017 FOR YEARS[i] FOR ALL YEARS
+          
+          for(i in 1:28){
+            ind <- 1
+            for(ind in 1:201){
+              if(all.country$Year[ind] == 2017){
+                cortt <- cor(all.country[all.country$Year == yearss[i],c(4:10)])
+                
+              }
+              
+              ind <- ind + 1 
+            }
+          }
+          
+          cortt
+          head(all.country)
+          
+          
+          
+
+          
+
+          #### ####
+          #
+          #
+          #
+          #
+          #
+          #
+          #
+          © 2020 GitHub, Inc.

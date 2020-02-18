@@ -1,0 +1,33 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1582045726462.000,
+    "dirty" : false,
+    "encoding" : "",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "CFA90738",
+    "lastKnownWriteTime" : 3180141919958494821,
+    "last_content_update" : 1582045726462,
+    "path" : null,
+    "project_path" : null,
+    "properties" : {
+        "cacheKey" : "B3B4380E",
+        "caption" : "anxiety.prev",
+        "contentUrl" : "grid_resource/gridviewer.html?env=&obj=anxiety.prev&cache_key=B3B4380E",
+        "displayedObservations" : 21989,
+        "environment" : "",
+        "expression" : "anxiety.prev",
+        "object" : "anxiety.prev",
+        "preview" : 0,
+        "totalObservations" : 21989,
+        "variables" : 6
+    },
+    "read_only" : false,
+    "read_only_alternatives" : [
+    ],
+    "relative_order" : 5,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_dataframe"
+}
