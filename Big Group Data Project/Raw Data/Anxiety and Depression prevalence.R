@@ -236,16 +236,48 @@ correlation.2016 = cor(prevalence.2016[, 2:8])
 prevalence.2017 = Global.ment.years[Global.ment.years$Year == "2017",]
 correlation.2017 = cor(prevalence.2017[, 2:8])
 
-#Creating Matrix Table
+#Automating? 
+for(i in 1:length(Global.ment.years$Year) {
+  if (Global.ment.years[c(i=>28, ),]) {
+    
+    
+  }
+}
+#Creating Matrix Table for 2010 to 2017
 
-round(correlation.ment, 2) # Round off values in the correlation to 2
+upper.2010 <- round(correlation.2010, 3)
+upper.2010[upper.tri(correlation.2010)] <-""
+upper.2010 <- as.data.frame(upper.2010) 
 
-lower.tri(correlation.ment, diag = FALSE) 
-upper.2017 <- round(correlation.ment, 2)
+upper.2011 <- round(correlation.2011, 3)
+upper.2011[upper.tri(correlation.2011)] <-""
+upper.2011 <- as.data.frame(upper.2011) 
+
+upper.2012 <- round(correlation.2012, 3)
+upper.2012[upper.tri(correlation.2012)] <-""
+upper.2012 <- as.data.frame(upper.2012) 
+
+upper.2013 <- round(correlation.2013, 3)
+upper.2013[upper.tri(correlation.2013)] <-""
+upper.2013 <- as.data.frame(upper.2013) 
+
+upper.2014 <- round(correlation.2014, 3)
+upper.2014[upper.tri(correlation.2014)] <-""
+upper.2014 <- as.data.frame(upper.2014) 
+
+upper.2015 <- round(correlation.2015, 3)
+upper.2015[upper.tri(correlation.2015)] <-""
+upper.2015 <- as.data.frame(upper.2015) 
+
+upper.2016 <- round(correlation.2016, 3)
+upper.2016[upper.tri(correlation.2016)] <-""
+upper.2016 <- as.data.frame(upper.2016) 
+
+upper.2017 <- round(correlation.ment, 3)
 upper.2017[upper.tri(correlation.ment)] <-""
 upper.2017 <- as.data.frame(upper.2017) 
 
-print(xtable(upper.2017), type = "html")
+
 
 #Visualize the Table. Taken from:
 # https://www.littlemissdata.com/blog/prettytables
@@ -266,22 +298,103 @@ library(dplyr)
 library(formattable)
 
 library(tidyr)
-#Set of Colors
-customGreen0 = "#DeF7E9"
 
-customGreen = "#71CA97"
+#Creating Tables 2010-2017
 
-customRed = "#ff7f7f"
+formattable(upper.2010, 
+            align = c("l", rep("r", NCOL(upper.2010))), 
+            list("Correlation 2010" = formatter("span", style = 
+                                ~ style(color = "greay", font.weight = "bold"))
+            ))
+formattable(upper.2011, 
+            align = c("l", rep("r", NCOL(upper.2011))), 
+            list("Correlation 2010" = formatter("span", style = 
+                                ~ style(color = "greay", font.weight = "bold"))
+            ))
+
+formattable(upper.2012, 
+            align = c("l", rep("r", NCOL(upper.2012))), 
+            list("Correlation 2010" = formatter("span", style = 
+                                ~ style(color = "greay", font.weight = "bold"))
+            ))
+formattable(upper.2013, 
+            align = c("l", rep("r", NCOL(upper.2013))), 
+            list("Correlation 2010" = formatter("span", style = 
+                                ~ style(color = "greay", font.weight = "bold"))
+            ))
+formattable(upper.2014, 
+            align = c("l", rep("r", NCOL(upper.2014))), 
+            list("Correlation 2010" = formatter("span", style =
+                                ~ style(color = "greay", font.weight = "bold"))
+            ))
+
+formattable(upper.2015, 
+            align = c("l", rep("r", NCOL(upper.2015))), 
+            list("Correlation 2010" = formatter("span", style = 
+                                ~ style(color = "greay", font.weight = "bold"))
+            ))
+
+formattable(upper.2016, 
+            align = c("l", rep("r", NCOL(upper.2016))), 
+            list("Correlation 2010" = formatter("span", style =
+                                ~ style(color = "greay", font.weight = "bold"))
+            ))
 
 formattable(upper.2017, 
             align = c("l", rep("r", NCOL(upper.2017))),
-            list("Correlation 2017" = formatter("span", style = ~ style(color = "greay", font.weight = "bold"))
+            list("Correlation 2017" = formatter("span", style = 
+                                ~ style(color = "greay", font.weight = "bold"))
             ))
         
          
             
-class(correlation.1990)         
-Year1990 <- correlation.1990[2:5, 1]
-Year2000 <- correlation.2000[2:5, 1]
-Year
-schiz.mental<- cbind(Year1990, Year1991) 
+
+#Creating a table for correlation with schizophrenia from 2010 - 2017
+Year.2010 <- correlation.2010[2:7, 1]
+Year.2011 <- correlation.2011[2:7, 1]
+Year.2012 <- correlation.2012[2:7, 1]
+Year.2013 <- correlation.2013[2:7, 1]
+Year.2014 <- correlation.2014[2:7, 1]
+Year.2015 <- correlation.2015[2:7, 1]
+Year.2016 <- correlation.2016[2:7, 1]
+Year.2017 <- correlation.2017[2:7, 1]
+schiz.mental<- cbind(Year.2010, Year.2011, Year.2012, Year.2013, 
+                     Year.2014, Year.2015, Year.2016, Year.2017) 
+schiz.mental<- round(schiz.mental, 3)
+
+#Creating a table for correlation with anxiety from 2010 - 2017
+Year.2010 <- correlation.2010[c(1:3, 5:7), 4]
+Year.2011 <- correlation.2011[c(1:3, 5:7), 4]
+Year.2012 <- correlation.2012[c(1:3, 5:7), 4]
+Year.2013 <- correlation.2013[c(1:3, 5:7), 4]
+Year.2014 <- correlation.2014[c(1:3, 5:7), 4]
+Year.2015 <- correlation.2015[c(1:3, 5:7), 4]
+Year.2016 <- correlation.2016[c(1:3, 5:7), 4]
+Year.2017 <- correlation.2017[c(1:3, 5:7), 4]
+anx.mental<- cbind(Year.2010, Year.2011, Year.2012, Year.2013, 
+                   Year.2014, Year.2015, Year.2016, Year.2017) 
+anx.mental<- round(anx.mental, 3)
+
+#Creating a table for correlation with depressionfrom 2010 - 2017
+Year.2010 <- correlation.2010[c(1:5, 7), 6]
+Year.2011 <- correlation.2011[c(1:5, 7), 6]
+Year.2012 <- correlation.2012[c(1:5, 7), 6]
+Year.2013 <- correlation.2013[c(1:5, 7), 6]
+Year.2014 <- correlation.2014[c(1:5, 7), 6]
+Year.2015 <- correlation.2015[c(1:5, 7), 6]
+Year.2016 <- correlation.2016[c(1:5, 7), 6]
+Year.2017 <- correlation.2017[c(1:5, 7), 6]
+depr.mental<- cbind(Year.2010, Year.2011, Year.2012, Year.2013, 
+                    Year.2014, Year.2015, Year.2016, Year.2017) 
+depr.mental<- round(depr.mental, 3)
+Year.2010
+
+length(Global.ment.years["2010", ])
+
+
+for (i in Global.ment.years["2010",]) {
+  
+  print(Global.ment.years[,c(2:7)])
+  print(i)
+}
+
