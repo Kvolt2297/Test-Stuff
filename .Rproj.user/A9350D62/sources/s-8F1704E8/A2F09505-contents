@@ -83,6 +83,7 @@ unique(d.t$Entity)
 # make a loop to subset per country
 head(d.t)
 
+mental.global <- d.t
 mental.global.2017 <- d.t[d.t$Year == "2017",]
 d.tt$Year
 
