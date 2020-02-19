@@ -285,7 +285,16 @@ naming.label <- c("Schizophrenia", "Bipolar", "Eating Disorders",
                   "Anxiety", "Drug Use Disorder", "Depression", 
                   "Alcohol Use Disorder")
 
+
+renaming<-function(x) {
+  rownames(objects(x)) <- naming.label
+  colnames(objects(x)) <- naming.label
+                        }
+
+
 #Assigning the name to correlation coefficient from 2010 to 2017 data
+
+  renaming(upper.2010)
   rownames(upper.2010) <- naming.label #Renaming the rows in upper.2010
   colnames(upper.2010) <- naming.label #Renaming the columns in upper.2010
   
