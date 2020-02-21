@@ -55,7 +55,7 @@ stress.level(1, 10)
 
 #storage <- vector("numeric", 100) < Attempted to make a storage area with 
 #100 empty spaces and fill it with NA
-
+#Creating names for the group. Each of the names are followed respectively.
 names.groups <- c("Stressed Neutral", "Stress Disparaging", "No Stress Neutral", 
                   "No Stress Disparaging")
 #Storage for 4 groupsof n.participants. Fill it with NA's
@@ -64,10 +64,15 @@ storage <- cbind.data.frame(group = rep(names.groups, rep(n.participants,4)),
                  middle = rep(NA, 4*n.participants),
                  finish = rep(NA, 4*n.participants)
                  )
-head(storage) #Check
+head(storage) #Check if it works
 
-#This was me trying to assign every group in every variable for a stress levels
-#Farmers way
+#Giving each group stress level. I can change estimated values from here if I 
+#want to change it in a loop.
+
+#Stress at the beggining of the experiment
+stress.start <- stress.level (0, 2)
+
+#Stress after going through Treir Social Stress Test
 stress.TSST.neutral <- stress.level(4, 8)
 stress.TSST.disparaging <- stress.level(4, 8)
 
@@ -78,13 +83,14 @@ stress.after.disparaging <- stress.level(2, 6)
 stress.free.after.neutral <- stress.level(1,3)
 stress.free.after.disparaging <- stress.level(1,3)
 
+#Credits to Thor Veen for assisting me with this code
 for(i in 1:4){
   #Enter for loop
   # i <- 1 #Reset loop
   start.stop <- c( ((i-1) * n.participants + 1), i * n.participants)
                    
   #Storing the data into the 1st columns
-  storage$start[start.stop[1]:start.stop[2]] <- stress.level(0,2)
+  storage$start[start.stop[1]:start.stop[2]] <- stress.start
   
   #Storing the data into the 2nd column - ONLY STRESSED GROUP. That's first 
   #half of the participants
@@ -100,21 +106,21 @@ while (i <= 2) { #Telling the code to continue running if i is below or equals
 #group would have different stress ranges. Thus I need to assign unique stress
 #levels for four groups. 
 while (i <= 1) { #First group - Stressed Neutral
-  storage$finish[start.stop[1]:start.stop[2]] <- stress.level(3,6)
+  storage$finish[start.stop[1]:start.stop[2]] <- stress.after.neutral
   break }
 
 while (i == 2) { #First group - Stressed Disparaging
-  storage$finish[start.stop[1]:start.stop[2]] <- stress.level(3,5)
+  storage$finish[start.stop[1]:start.stop[2]] <- stress.after.disparaging
   break
 }
 
 while (i == 3) { #First group - No Stress Neutral
-  storage$finish[start.stop[1]:start.stop[2]] <- stress.level(1,4)
+  storage$finish[start.stop[1]:start.stop[2]] <- stress.free.after.neutral
   break
 }
 
 if (i == 4) { #First group - No Stress Disparaging
-  storage$finish[start.stop[1]:start.stop[2]] <- stress.level(1,4)
+  storage$finish[start.stop[1]:start.stop[2]] <- stress.free.after.disparaging
   break
 }
 } #Provides me with stress levels for each row and column!  
@@ -124,7 +130,11 @@ if (i == 4) { #First group - No Stress Disparaging
 # I get incorrect number of dimensions error
 #rownames(storage)
 #storage$start["Stressed neutral", ]
-
-
-
+head(storage)
+tail(storage)
+stress.start <- stress.level (0, 2)
+#Calculating mean, sd and frequency of the the stress in the beggining.
+mean(storage$start) # 1.08
+sd(storage$start) #0.631
+length(storage$start) #100
 
