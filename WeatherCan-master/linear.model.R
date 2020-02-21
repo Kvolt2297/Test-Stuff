@@ -1,0 +1,87 @@
+#
+# outline how linear models work
+#
+# ----- regression example ---------------------
+#
+
+d <- read.csv(paste(path.data, "chickadee.calls.csv", sep = ""), 
+              stringsAsFactors = FALSE)
+
+
+
+d<- read.csv(file.choose(), stringsAsFactors = FALSE)
+head(d)
+plot(d$mass, d$ï..dees, las = 1, pch = 16, col = "red", xlab = "Mass" , ylab = "Dees" )
+
+# let's fit a linear regression
+
+z1.reg <- lm(d$ï..dees ~ d$mass)
+summary(z1.reg)
+
+plot(z1.reg)
+
+z <- ()
+
+#Reduced Model
+
+
+
+
+
+# ----- anova example ---------------------
+
+
+
+
+
+# mouse example
+#Simulate the data
+groups <- c("isolated", "companion not injected", "companion.injected")
+n.groups <- c(17, 13, 12)
+means.groups <- c(37,35,57)
+sd.groups <- c(3, 3, 2)
+#Make factor with missing element.
+stretching <- c(NA)
+for(i in 1:length(n.groups)){
+  stretching <- c(stretching,rnorm(n.groups[i], means.groups[i],sd.groups[i]))
+}
+# remove first element
+stretching <- stretching[-1]
+# create groups
+treatment <- rep(groups, n.groups)
+
+length(treatment)
+length(stretching)
+# make sure that lengths are the same
+if(length(stretching) != length(treatment)) print("vector length issue")
+# merge both variables into data frame
+d.mice <- cbind.data.frame(treatment, stretching)
+str(d.mice)
+
+# the model
+m.1 <- lm(d.mice$stretching ~ d.mice$treatment)
+summary(m.1)
+
+# levels not right
+d.mice$treatment <- factor(d.mice$treatment, groups) 
+str(d.mice)
+m.2 <- lm(d.mice$stretching ~ d.mice$treatment)
+summary(m.2)
+
+
+m.3 <- lm(d.mice$stretching ~ 1)
+summary(m.3)
+
+# should we keep treatment in or not?
+# is model with treatment and intercept explain more variance than 
+# model with only intercept?
+anova(m.2, m.3)
+
+
+# means model
+m.means.1 <- lm(d.mice$stretching ~ d.mice$treatment - 1)
+summary(m.means.1)
+
+
+
+# -------------------------

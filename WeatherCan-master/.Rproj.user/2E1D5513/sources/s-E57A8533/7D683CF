@@ -1,0 +1,22 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1581535579410.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "7D683CF",
+    "lastKnownWriteTime" : 1581544278,
+    "last_content_update" : 1581544278351,
+    "path" : "~/Dropbox/2020 S 2 Data analysis using R/WeatherCan/main.R",
+    "project_path" : "main.R",
+    "properties" : {
+        "cursorPosition" : "69,9",
+        "scrollLine" : "62"
+    },
+    "relative_order" : 1,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}
