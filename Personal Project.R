@@ -1,4 +1,4 @@
-#
+#Kirill Volodko
 #
 #
 #Personal Project
@@ -6,7 +6,7 @@
 #
 #
 #
-
+#Plainning--------------------------------------------------------------------
 #Simulating the data
 #I will need 3 different columns for 4 tables. 
 #Columns = Stress before the experiment, stress after TSST and stress after
@@ -17,11 +17,12 @@
 
 #Making the groups. 25 participants for each (100 in total).
 total.participants <- 100  #total amount of participants in the experiment
-n.participants <- 25 #how any participants in each group
+n.participants <- total.participants/4 #how any participants in each group
 
+#Failed Attempts------------------------------------------------------------
 #My attempts at manually inputting participant number into specific groups and 
 #then placing binding them into rows... it doesn't work like that 
-
+#
 #Assigning the participants to each of the group 
 # part.stress.neutral <- n.participants
 # part.stress.disparaging <- n.participants 
@@ -39,6 +40,7 @@ n.participants <- 25 #how any participants in each group
 #       cbind(stress.TSST.neutral, stress.TSST.disparaging)
 
 
+#Making a table for raw data------------------------------------------------
 
 #Making function for random data points for each of the group.
 #Likert scale only works with integers. Our Likert scale is from 
@@ -133,8 +135,110 @@ if (i == 4) { #First group - No Stress Disparaging
 head(storage)
 tail(storage)
 stress.start <- stress.level (0, 2)
-#Calculating mean, sd and frequency of the the stress in the beggining.
+
+
+#Working on Descriptives---------------------------------------------------
+
+#Manual checking of descripitve data 
 mean(storage$start) # 1.08
 sd(storage$start) #0.631
 length(storage$start) #100
+
+#Making an empty table to fill
+descr.name <- c("Size", "Mean", "Standard Deviation")
+descr.table <- cbind.data.frame(group = rep(descr.name, 1),
+                                Size = rep(NA, 3), Mean = rep(NA, 3),
+                                Standard.Deviation = rep(NA, 3)
+                                )
+
+#Calculating mean, sd and frequency of the the stress with a function. 
+descriptives <- function(x) {
+
+  Size <- length(x)
+  Mean <- mean(x, na.rm = TRUE) #Since we have NA's, we need to exclude them 
+                                  #from calculation
+  Standard_Deviation <- round(sd(x, na.rm = TRUE), 2) 
+  
+ discriptive.info <-cbind.data.frame(
+                   Size, 
+                   Mean, 
+                   Standard_Deviation)
+}
+
+#Checking if the function worked or not
+
+#EDIT: I came to realization that I will need descriptive statistic for every
+#phase for EVERY group. I need to figure out a smart way to this process.
+start.descr<-descriptives(storage$start)
+
+#Descriptive calculation for every phase and group (Farmer's way)-------------
+#Calculating Stress Before The Experiment
+#After reading neutral jokes after TSST
+s.descr.stress.neutral <- descriptives(storage$start[1:25])
+print(f.descr.free.neutral)
+
+#After reading disparaging jokes after TSST
+s.descr.stress.disparaging <- descriptives(storage$start[26:50])
+print(f.descr.free.disparaging)
+
+#After reading neutral jokes in without stress tests
+s.descr.free.neutral<- descriptives(storage$start[51:75])
+print(f.descr.free.neutral)
+
+#After reading disparaging jokes without stress tests
+s.descr.free.disparaging <- descriptives(storage$start[76:100])
+print(f.descr.free.disparaging)
+
+
+
+
+#Finding descriptives for middle column. There are missing values that I have to
+#deal with. Since there are two seprate groups, I need to figure out how to 
+#divide them apart. The function does that automatically!
+
+m.descr.stress.neutral<-descriptives(storage$middle[1:25])
+print(descr.stress.neutral)
+
+m.descr.stress.disparaging<-descriptives(storage$middle[26:50])
+print(descr.stress.disparaging)
+
+#Finding descriptives for the last column. I need to have descriptives for each
+#row in the last phase. 
+#Calculating values based on their location in the data set.
+
+#Maybe I can create function for what I have done below?
+
+#After reading neutral jokes after TSST
+f.descr.stress.neutral <- descriptives(storage$finish[1:25])
+print(f.descr.free.neutral)
+
+#After reading disparaging jokes after TSST
+f.descr.stress.disparaging <- descriptives(storage$finish[26:50])
+print(f.descr.free.disparaging)
+
+#After reading neutral jokes in without stress tests
+f.descr.free.neutral<- descriptives(storage$finish[51:75])
+print(f.descr.free.neutral)
+
+#After reading disparaging jokes without stress tests
+f.descr.free.disparaging <- descriptives(storage$finish[76:100])
+print(f.descr.free.disparaging)
+
+#Creating a loop to craft a descriptive table for every group------------------
+for(i in 1:4){
+  
+  start.stop <- c( ((i-1) * n.participants + 1), i * n.participants)
+  # sim for the start dates
+  storage$start[start.stop[1]:start.stop[2]] 
+  <- rnorm(start.descr$Size, start.descr$Mean, start.descr$Standard_Deviation)
+  
+  # sim for the end values
+  storage$end[start.stop[1]:start.stop[2]] 
+  <- rnorm(n.participants, mean.gr.end[i], sd.gr.end[i])
+}
+
+#Experimenting witg write.table function
+write.table(storage, file ="Test Stuff")
+
+
 
