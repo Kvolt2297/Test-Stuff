@@ -6,8 +6,6 @@
 #
 #
 #
-library(plyr)
-library(dplyr)
 #Plainning--------------------------------------------------------------------
 #Simulating the data
 #I will need 3 different columns for 4 tables. 
@@ -78,15 +76,15 @@ head(storage) #Check if it works
 stress.start <- stress.level (0, 2)
 
 #Stress after going through Treir Social Stress Test
-stress.TSST.neutral <- stress.level(4, 8)
-stress.TSST.disparaging <- stress.level(4, 8)
+stress.TSST.neutral <- stress.level(4.5, 8)
+stress.TSST.disparaging <- stress.level(4.5, 8)
 
 #Assigning stress level after hearing jokes in four different groups
-stress.after.neutral <- stress.level(3, 7)
-stress.after.disparaging <- stress.level(2, 6)
+stress.after.neutral <- stress.level(3, 6)
+stress.after.disparaging <- stress.level(2, 5)
 
-stress.free.after.neutral <- stress.level(1,3)
-stress.free.after.disparaging <- stress.level(1,3)
+stress.free.after.neutral <- stress.level(0,2)
+stress.free.after.disparaging <- stress.level(0,2)
 
 #Credits to Thor Veen for assisting me with this code
 for(i in 1:4){
@@ -124,7 +122,7 @@ while (i == 3) { #First group - No Stress Neutral
   break
 }
 
-if (i == 4) { #First group - No Stress Disparaging
+while (i == 4) { #First group - No Stress Disparaging
   storage$finish[start.stop[1]:start.stop[2]] <- stress.free.after.disparaging
   break
 }
@@ -338,9 +336,9 @@ phase3 <- rbind(f.descr.stress.neutral,
               f.descr.free.disparaging)
 
 for(i in 1:3){
-s.descr.table[1:4, i+1] = phase1[1:4, i]
-m.descr.table[1:2, i+1] = phase2[1:2, i]
-f.descr.table[1:4, i+1] = phase3[1:4, i]
+s.descr.table[1:4, i+1] = phase1[1:4, i] #Start
+m.descr.table[1:2, i+1] = phase2[1:2, i] #Middle
+f.descr.table[1:4, i+1] = phase3[1:4, i] #Final
 }
 
 #check if they work. Their values should match
@@ -349,8 +347,40 @@ head(m.descr.table) #It works
 
 
 #Data Emulation------------------
+d.storage <- cbind.data.frame(group = rep(names.groups, rep(n.participants,4)), 
+                              start = rep(NA, 4*n.participants), 
+                              middle = rep(NA, 4*n.participants),
+                              finish = rep(NA, 4*n.participants)
+)
+
+#Emulating data through rnorm---------------------------------------------------                                                    
+for(i in 1:4){
+# enter for loop
+
+start.stop <- c( ((i-1) * n.participants + 1), i * n.participants)
+# First phase for every group has all the similar data.
+d.storage$start[start.stop[1]:start.stop[2]] <- round(rnorm(n.participants, 
+                                        s.descr.table$Mean[i],
+                                        s.descr.table$Standard.Deviation[i]),2)
+#Secobd phase only for the stressed groups
+while(i <= 2) {
+d.storage$middle[start.stop[1]:start.stop[2]] <- round(rnorm(n.participants, 
+                                        m.descr.table$Mean[i],
+                                        m.descr.table$Standard.Deviation[i]),2)
+break }
+
+#Third phase is for all, but every group has diffirent values
+d.storage$finish[start.stop[1]:start.stop[2]] <- round(rnorm(n.participants, 
+                                        f.descr.table$Mean[i],
+                                        f.descr.table$Standard.Deviation[i]),2)
+}
 
 
 
 
+#Running Anova I need to learn how to run ANOVA with 3 variables
+a.1 <- lm(storage$start[76-100] ~ storage$finish[76:100])
+a.2 <- lm(storage$finish[1:25] ~ 1)
+what<-anova(a.1)
 
+      
