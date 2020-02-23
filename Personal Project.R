@@ -6,6 +6,8 @@
 #
 #
 #
+library(plyr)
+library(dplyr)
 #Plainning--------------------------------------------------------------------
 #Simulating the data
 #I will need 3 different columns for 4 tables. 
@@ -17,7 +19,7 @@
 
 #Making the groups. 25 participants for each (100 in total).
 total.participants <- 100  #total amount of participants in the experiment
-n.participants <- total.participants/4 #how any participants in each group
+n.participants <- round(total.participants/4, 0) #how any participants in each group
 
 #Failed Attempts------------------------------------------------------------
 #My attempts at manually inputting participant number into specific groups and 
@@ -57,6 +59,7 @@ stress.level(1, 10)
 
 #storage <- vector("numeric", 100) < Attempted to make a storage area with 
 #100 empty spaces and fill it with NA
+
 #Creating names for the group. Each of the names are followed respectively.
 names.groups <- c("Stressed Neutral", "Stress Disparaging", "No Stress Neutral", 
                   "No Stress Disparaging")
@@ -132,9 +135,10 @@ if (i == 4) { #First group - No Stress Disparaging
 # I get incorrect number of dimensions error
 #rownames(storage)
 #storage$start["Stressed neutral", ]
-head(storage)
-tail(storage)
+
+head(storage) #Check jhow it works.
 stress.start <- stress.level (0, 2)
+
 
 
 #Working on Descriptives---------------------------------------------------
@@ -143,13 +147,6 @@ stress.start <- stress.level (0, 2)
 mean(storage$start) # 1.08
 sd(storage$start) #0.631
 length(storage$start) #100
-
-#Making an empty table to fill
-descr.name <- c("Size", "Mean", "Standard Deviation")
-descr.table <- cbind.data.frame(group = rep(descr.name, 1),
-                                Size = rep(NA, 3), Mean = rep(NA, 3),
-                                Standard.Deviation = rep(NA, 3)
-                                )
 
 #Calculating mean, sd and frequency of the the stress with a function. 
 descriptives <- function(x) {
@@ -171,8 +168,10 @@ descriptives <- function(x) {
 #phase for EVERY group. I need to figure out a smart way to this process.
 start.descr<-descriptives(storage$start)
 
+
 #Descriptive calculation for every phase and group (Farmer's way)-------------
-#Calculating Stress Before The Experiment
+
+#Finding descriptives before The Experiment-----------
 #After reading neutral jokes after TSST
 s.descr.stress.neutral <- descriptives(storage$start[1:25])
 print(f.descr.free.neutral)
@@ -189,12 +188,10 @@ print(f.descr.free.neutral)
 s.descr.free.disparaging <- descriptives(storage$start[76:100])
 print(f.descr.free.disparaging)
 
-
-
-
-#Finding descriptives for middle column. There are missing values that I have to
+#Finding descriptives for middle column---------------------------------------- 
+#There are missing values that I have to
 #deal with. Since there are two seprate groups, I need to figure out how to 
-#divide them apart. The function does that automatically!
+#divide them apart.
 
 m.descr.stress.neutral<-descriptives(storage$middle[1:25])
 print(descr.stress.neutral)
@@ -202,10 +199,10 @@ print(descr.stress.neutral)
 m.descr.stress.disparaging<-descriptives(storage$middle[26:50])
 print(descr.stress.disparaging)
 
-#Finding descriptives for the last column. I need to have descriptives for each
-#row in the last phase. 
-#Calculating values based on their location in the data set.
+#Finding descriptives for the last column.------------------------------------- 
 
+#I need to have descriptives for each row in the last phase. 
+#Calculating values based on their location in the data set.
 #Maybe I can create function for what I have done below?
 
 #After reading neutral jokes after TSST
@@ -224,18 +221,71 @@ print(f.descr.free.neutral)
 f.descr.free.disparaging <- descriptives(storage$finish[76:100])
 print(f.descr.free.disparaging)
 
+
 #Creating a loop to craft a descriptive table for every group------------------
-for(i in 1:4){
+
+#Making an empty table to fill
+
+#Create a descriptive stable to for every group
+descr.name <- c("Stressed Neutral", "Stress Disparaging", "No Stress Neutral", 
+                "No Stress Disparaging")
+
+descr.table <- cbind.data.frame(Group = rep(descr.name, 1),
+                                 Size = rep(NA, 4), Mean = rep(NA, 4),
+                                 Standard.Deviation = rep(NA, 4)
+)
+
+#Experimenting with combining the data frames
+#for(i in 1:4) {
+testdata <- rbind.fill(descr.table,  
+                s.descr.stress.neutral, 
+                s.descr.stress.disparaging, 
+                s.descr.free.neutral, 
+                s.descr.stress.disparaging)
+# }
+testdata<-merge.data.frame(descr.table$Size, s.descr.free.disparaging$Size)
+testdata<-cbind.data.frame(descr.table$Size, s.descr.free.disparaging$Size )
+
+phase1<-c(s.descr.stress.neutral, 
+       s.descr.stress.disparaging, 
+       s.descr.free.neutral, 
+       s.descr.free.disparaging)
+
+phase2 <- c(m.descr.stress.neutral, 
+            m.descr.stress.disparaging)
+
+phase3 <- c(f.descr.stress.neutral, 
+            f.descr.stress.disparaging, 
+            f.descr.free.neutral, 
+            f.descr.free.disparaging)
+
+
+
+
+i <- 3
+ for(i in 1:4){
+  start.stop <- i
+  descr.table$Size[start.stop[1]:start.stop[1]] <- phase1[i*3 + 1]
+
+  descr.table$Mean[start.stop[1]:start.stop[1]] <- phase1[i*3 + 2]
   
-  start.stop <- c( ((i-1) * n.participants + 1), i * n.participants)
-  # sim for the start dates
-  storage$start[start.stop[1]:start.stop[2]] 
-  <- rnorm(start.descr$Size, start.descr$Mean, start.descr$Standard_Deviation)
+  descr.table$Standard.Deviation[start.stop[1]:start.stop[1]] <- phase1[i*3 + 3]
+ }
+i <- 0
+for(i in 0:4){
+  start.stop <- i
+  descr.table$Size[start.stop[i]] <- phase3[i*3 + 1]
   
-  # sim for the end values
-  storage$end[start.stop[1]:start.stop[2]] 
-  <- rnorm(n.participants, mean.gr.end[i], sd.gr.end[i])
+  descr.table$Mean[start.stop[i]] <- phase3[i*3 + 2]
+  
+  descr.table$Standard.Deviation[start.stop[i]] <- phase3[i*3 + 3]
 }
+start.stop <- c( ((i-1) * n.participants + 1), i * n.participants)
+
+#Storing the data into the 1st columns
+storage$start[start.stop[1]:start.stop[2]] <- stress.start
+
+
 
 #Experimenting witg write.table function
 write.table(storage, file ="Test Stuff")
