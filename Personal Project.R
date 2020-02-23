@@ -166,7 +166,9 @@ descriptives <- function(x) {
 
 #EDIT: I came to realization that I will need descriptive statistic for every
 #phase for EVERY group. I need to figure out a smart way to this process.
-start.descr<-descriptives(storage$start)
+
+start.descr<-descriptives(storage$start) #testing the descriptive function.
+#The values match with my manual input. It means the descriptives() works
 
 
 #Descriptive calculation for every phase and group (Farmer's way)-------------
@@ -224,71 +226,131 @@ print(f.descr.free.disparaging)
 
 #Creating a loop to craft a descriptive table for every group------------------
 
-#Making an empty table to fill
+#Making an empty tables to fill
 
-#Create a descriptive stable to for every group
+#Create a descriptive stable to for every group in the every phase 
 descr.name <- c("Stressed Neutral", "Stress Disparaging", "No Stress Neutral", 
                 "No Stress Disparaging")
 
-descr.table <- cbind.data.frame(Group = rep(descr.name, 1),
+#Phase start
+s.descr.table <- cbind.data.frame(Group = rep(descr.name, 1),
                                  Size = rep(NA, 4), Mean = rep(NA, 4),
                                  Standard.Deviation = rep(NA, 4)
 )
+#Phase Middle 
+m.descr.table <- cbind.data.frame(Group = descr.name[1:2],
+                                Size = rep(NA, 2), Mean = rep(NA, 2),
+                                Standard.Deviation = rep(NA, 2)
+)
+#Phase Final
+f.descr.table <- cbind.data.frame(Group = rep(descr.name, 1),
+                                Size = rep(NA, 4), Mean = rep(NA, 4),
+                                Standard.Deviation = rep(NA, 4)
+)
 
-#Experimenting with combining the data frames
-#for(i in 1:4) {
-testdata <- rbind.fill(descr.table,  
-                s.descr.stress.neutral, 
-                s.descr.stress.disparaging, 
-                s.descr.free.neutral, 
-                s.descr.stress.disparaging)
+#Experimenting with combining the data frames [FAILED]-------------------------
+
+#Did not work out. It is due that descr.table has more columns than other datas
+# testdata <- rbind(descr.table,  
+#                 s.descr.stress.neutral, 
+#                 s.descr.stress.disparaging, 
+#                 s.descr.free.neutral, 
+#                 s.descr.stress.disparaging)
+
+# Attempts at Making Automated Descriptive Table for All [FAILED]---------------
+# testdata<-merge.data.frame(descr.table$Size, s.descr.free.disparaging$Size)
+# testdata<-cbind.data.frame(descr.table$Size, s.descr.free.disparaging$Size )
+# 
+# phase1<-c(s.descr.stress.neutral, 
+#        s.descr.stress.disparaging, 
+#        s.descr.free.neutral, 
+#        s.descr.free.disparaging)
+# 
+# phase2 <- c(m.descr.stress.neutral, 
+#             m.descr.stress.disparaging)
+# 
+# phase3 <- c(f.descr.stress.neutral, 
+#             f.descr.stress.disparaging, 
+#             f.descr.free.neutral, 
+#             f.descr.free.disparaging)
+# i <- 1
+#  for(i in 1:4){
+#   start.stop <- i
+#   descr.table$Size[start.stop[1]:start.stop[1]] <- phase1[i*3 + 1]
+# 
+#   descr.table$Mean[start.stop[1]:start.stop[1]] <- phase1[i*3 + 2]
+#   
+#   descr.table$Standard.Deviation[start.stop[1]:start.stop[1]] <- phase1[i*3 + 3]
+#  }
+# 
+# 
+# i <- 0
+# for(i in 0:4){
+#   start.stop <- i
+#   descr.table$Size[start.stop[i]] <- phase3[i*3 + 1]
+#   
+#   descr.table$Mean[start.stop[i]] <- phase3[i*3 + 2]
+#   
+#   descr.table$Standard.Deviation[start.stop[i]] <- phase3[i*3 + 3]
 # }
-testdata<-merge.data.frame(descr.table$Size, s.descr.free.disparaging$Size)
-testdata<-cbind.data.frame(descr.table$Size, s.descr.free.disparaging$Size )
-
-phase1<-c(s.descr.stress.neutral, 
-       s.descr.stress.disparaging, 
-       s.descr.free.neutral, 
-       s.descr.free.disparaging)
-
-phase2 <- c(m.descr.stress.neutral, 
-            m.descr.stress.disparaging)
-
-phase3 <- c(f.descr.stress.neutral, 
-            f.descr.stress.disparaging, 
-            f.descr.free.neutral, 
-            f.descr.free.disparaging)
-
-
-
-
-i <- 3
- for(i in 1:4){
-  start.stop <- i
-  descr.table$Size[start.stop[1]:start.stop[1]] <- phase1[i*3 + 1]
-
-  descr.table$Mean[start.stop[1]:start.stop[1]] <- phase1[i*3 + 2]
-  
-  descr.table$Standard.Deviation[start.stop[1]:start.stop[1]] <- phase1[i*3 + 3]
- }
-i <- 0
-for(i in 0:4){
-  start.stop <- i
-  descr.table$Size[start.stop[i]] <- phase3[i*3 + 1]
-  
-  descr.table$Mean[start.stop[i]] <- phase3[i*3 + 2]
-  
-  descr.table$Standard.Deviation[start.stop[i]] <- phase3[i*3 + 3]
-}
-start.stop <- c( ((i-1) * n.participants + 1), i * n.participants)
+# start.stop <- c( ((i-1) * n.participants + 1), i * n.participants)
 
 #Storing the data into the 1st columns
 storage$start[start.stop[1]:start.stop[2]] <- stress.start
 
 
 
-#Experimenting witg write.table function
-write.table(storage, file ="Test Stuff")
+
+#Manual Labor on assigning the Phase Start values-----------------------------
+#Size
+# s.descr.table[1,2] = s.descr.stress.neutral[1,1]
+# s.descr.table[2,2] = s.descr.stress.disparaging[1,1]
+# s.descr.table[3,2] = s.descr.free.disparaging[1,1]
+# s.descr.table[4,2] = s.descr.free.disparaging[1,1]
+# #Mean
+# s.descr.table[1,3] = s.descr.stress.neutral[1,2]
+# s.descr.table[2,3] = s.descr.stress.disparaging[1,2]
+# s.descr.table[3,3] = s.descr.free.disparaging[1,2]
+# s.descr.table[4,3] = s.descr.free.disparaging[1,2]
+# 
+# #SD 
+# s.descr.table[1,4] = s.descr.stress.neutral[1,3]
+# s.descr.table[2,4] = s.descr.stress.disparaging[1,3]
+# s.descr.table[3,4] = s.descr.free.disparaging[1,3]
+# s.descr.table[4,4] = s.descr.free.disparaging[1,3]
+
+#Looping the descriptive process--------------------------------------------
+#
+#Phase 1 has all of the groups (size, mean and sd are all equal to each other)
+phase1 <-rbind(s.descr.stress.neutral, 
+          s.descr.stress.disparaging, 
+          s.descr.free.neutral, 
+          s.descr.free.disparaging)
+#Phase 2 is only applicable to stress groups. So only 2 groups would apply here
+phase2 <- rbind(m.descr.stress.neutral, 
+                m.descr.stress.disparaging)
+
+#Last phase involves all of the groups (mean and sd are different in 
+#every group)
+phase3 <- rbind(f.descr.stress.neutral, 
+              f.descr.stress.disparaging, 
+              f.descr.free.neutral, 
+              f.descr.free.disparaging)
+
+for(i in 1:3){
+s.descr.table[1:4, i+1] = phase1[1:4, i]
+m.descr.table[1:2, i+1] = phase2[1:2, i]
+f.descr.table[1:4, i+1] = phase3[1:4, i]
+}
+
+#check if they work. Their values should match
+head(phase2) 
+head(m.descr.table) #It works 
+
+
+#Data Emulation------------------
+
+
 
 
 
