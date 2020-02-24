@@ -394,7 +394,20 @@ summary(anova.result)
 
 #Try to do it for each group of the expeirment. 
 
+#Separating each group data for the upcoming analysis. 
+storage.stress.n = storage[1:25, 2:4] #Stress Neutral
+storage.stress.d = storage[26:50, 2:4] #Stress Disparaging
+storage.free.n = storage[51:75, 2:4] #No stress Neutral
+storage.free.d = storage[76:100, 2:4] #No stress Disparaging
+
+testdata<-stack(storage.stress.n)
+anova.result <- aov(values ~ ind, data = testdata)
+summary(anova.result)
+
 anova.result <- aov(values ~ ind, data = testdata[c(1:25, 101:125, 201:225)])
 
+testdata.lm <- lm(storage$start[1:25], 
+                  storage$middle[1:25], 
+                  storage$finish[1:25])
 
       
