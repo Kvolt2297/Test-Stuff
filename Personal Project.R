@@ -392,29 +392,52 @@ summary(anova.result)
 storage.stress.n = storage[1:25, 2:4] #Stress Neutral
 storage.stress.d = storage[26:50, 2:4] #Stress Disparaging
 storage.free.n = storage[51:75, c(2,4)] #No stress Neutral. Deleted the middle.
-storage.free.d = storage[76:100, c(2,4)] #No stress Disparaging. 
+storage.free.d = storage[76:100, c(2,4)] #No stress Disparaging. No middle.
 
+#Calculating ANOVA for each group manually-----------------------------------
+#
 #Anova for Stress Neutral
 anova.stress.n<-stack(storage.stress.n) #Stacking Values
 anova.result.sn <- aov(values ~ ind, data = anova.stress.n)
-summary(anova.result.sn) 
+summary(anova.result.sn)
 #F(2, 72) = 177, p <.05
-
+#
 #Anova for Stress Disparaging
 anova.stress.d<-stack(storage.stress.d)
 anova.result.sd <- aov(values ~ ind, data = anova.stress.d)
 summary(anova.result.sd)
-#F(2, 72) = 88, p <.05 
-
+#F(2, 72) = 88, p <.05
+#
 anova.free.n<-stack(storage.free.n)
 anova.result.fn <- aov(values ~ ind, data = anova.free.n)
 summary(anova.result.fn)
-#F(1, 48) = 0.225, p <. 0.616 
-
+#F(1, 48) = 0.225, p <. 0.616
+#
 anova.free.d<-stack(storage.free.d)
 anova.result.fd <- aov(values ~ ind, data = anova.free.d)
 summary(anova.result.fd)
 #F(1, 48) = 0, p <. 1
+
+#Optimising ANOVA process----------------------------------------------------
+#EDIT: For some reason, after re-testing it gives me a list of 1, instead of 13
+anova.results <- function(x) {
+  y <- stack(x) #Stacking the groups 
+  y <-aov(values ~ ind, data = y) #Running anova analysis
+  summary(y) #Print out the results in a summary form
+}
+
+#Check if it matches with the manual input. Stress Neutral Group
+anova.result.sn <- anova.results(storage.stress.n)  
+
+#Values match, The function works.
+
+#Stress Disparaging
+anova.result.sd <- anova.results(storage.stress.d)
+#No Stress Neutral
+anova.result.fn <- anova.results(storage.free.n)
+#No Stress Disparaging
+anova.result.fd <- anova.results(storage.free.d)
+  
 
 
 #Trying to Figure Out Anova [FAILED]---------------------------------------
