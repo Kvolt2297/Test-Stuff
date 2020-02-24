@@ -379,42 +379,60 @@ d.storage$finish[start.stop[1]:start.stop[2]] <- round(rnorm(n.participants,
 
 
 #Running Anova I need to learn how to run ANOVA with 3 variables---------------
+
+
+testdata<-stack(storage) #stacks data differently. 
+anova.result <- aov(values ~ ind, data = testdata)
+summary(anova.result)
+
+#Separating each group data for the upcoming analysis.------------------------- 
+
+#Note: I am using original storage data, as if I am working with raw data.
+
+storage.stress.n = storage[1:25, 2:4] #Stress Neutral
+storage.stress.d = storage[26:50, 2:4] #Stress Disparaging
+storage.free.n = storage[51:75, c(2,4)] #No stress Neutral. Deleted the middle.
+storage.free.d = storage[76:100, c(2,4)] #No stress Disparaging. 
+
+#Anova for Stress Neutral
+anova.stress.n<-stack(storage.stress.n) #Stacking Values
+anova.result.sn <- aov(values ~ ind, data = anova.stress.n)
+summary(anova.result.sn) 
+#F(2, 72) = 177, p <.05
+
+#Anova for Stress Disparaging
+anova.stress.d<-stack(storage.stress.d)
+anova.result.sd <- aov(values ~ ind, data = anova.stress.d)
+summary(anova.result.sd)
+#F(2, 72) = 88, p <.05 
+
+anova.free.n<-stack(storage.free.n)
+anova.result.fn <- aov(values ~ ind, data = anova.free.n)
+summary(anova.result.fn)
+#F(1, 48) = 0.225, p <. 0.616 
+
+anova.free.d<-stack(storage.free.d)
+anova.result.fd <- aov(values ~ ind, data = anova.free.d)
+summary(anova.result.fd)
+#F(1, 48) = 0, p <. 1
+
+
+#Trying to Figure Out Anova [FAILED]---------------------------------------
+
 #Doesn't work
 # a.1 <- lm(storage$start[76-100] ~ storage$finish[76:100])
 # a.2 <- lm(storage$finish[1:25] ~ 1)
 # what<-anova(a.1)
 # aov(d.storage$start[1:25,], d.storage$middle[1:25,], d.storage$finish[1:25,])
 
-#Doing anova for the whole list of data... not useful, but helps to 
-#conceptualize how it should be odne. 
+#testdata <- stack(storage)
 
-testdata<-stack(storage) #stacks data differently. 
-anova.result <- aov(values ~ ind, data = testdata)
-summary(anova.result)
+#Giving anova analysis only values from specific groups from stacked data
 
-#Try to do it for each group of the expeirment. 
-
-#Separating each group data for the upcoming analysis. 
-storage.stress.n = storage[1:25, 2:4] #Stress Neutral
-storage.stress.d = storage[26:50, 2:4] #Stress Disparaging
-storage.free.n = storage[51:75, 2:4] #No stress Neutral
-storage.free.d = storage[76:100, 2:4] #No stress Disparaging
-
-#Anova for Stress Neutral
-anova.stress.n<-stack(storage.stress.n)
-anova.result.n <- aov(values ~ ind, data = anova.stress.n)
-summary(anova.result.n) 
-
-#Anova for Stress Disparaging
-anova.stress.d<-stack(storage.stress.d)
-anova.result.d <- aov(values ~ ind, data = anova.stress.d)
-summary(anova.result.d)
-
-
-anova.result <- aov(values ~ ind, data = testdata[c(1:25, 101:125, 201:225)])
-
-testdata.lm <- lm(storage$start[1:25], 
-                  storage$middle[1:25], 
-                  storage$finish[1:25])
+# anova.result <- aov(values ~ ind, data = testdata[c(1:25, 101:125, 201:225)])
+# 
+# testdata.lm <- lm(storage$start[1:25], 
+#                   storage$middle[1:25], 
+#                   storage$finish[1:25])
 
       
