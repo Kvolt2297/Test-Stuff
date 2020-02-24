@@ -400,9 +400,16 @@ storage.stress.d = storage[26:50, 2:4] #Stress Disparaging
 storage.free.n = storage[51:75, 2:4] #No stress Neutral
 storage.free.d = storage[76:100, 2:4] #No stress Disparaging
 
-testdata<-stack(storage.stress.n)
-anova.result <- aov(values ~ ind, data = testdata)
-summary(anova.result)
+#Anova for Stress Neutral
+anova.stress.n<-stack(storage.stress.n)
+anova.result.n <- aov(values ~ ind, data = anova.stress.n)
+summary(anova.result.n) 
+
+#Anova for Stress Disparaging
+anova.stress.d<-stack(storage.stress.d)
+anova.result.d <- aov(values ~ ind, data = anova.stress.d)
+summary(anova.result.d)
+
 
 anova.result <- aov(values ~ ind, data = testdata[c(1:25, 101:125, 201:225)])
 
