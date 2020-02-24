@@ -15,14 +15,14 @@
 #Tables = No stress/Neutral, No stress/disparaging, stress/neutral
 #stress/disparaging
 
-#Sorting Out Folders
+#Sorting Out Folders-----------------------------------------------------------
 
 working.dir <- getwd()
 
 #Create folders Names
 output.folder.names <- c("graphs", "tables", "data")
 
-#Loop to creat the folders.
+#Loop to creat the folders
 for(i in 1:length(output.folder.names)) 
   if(file.exists(output.folder.names[i]) == FALSE) #If the folders are not 
     #present, create the folder
@@ -288,7 +288,7 @@ f.descr.table <- cbind.data.frame(Group = rep(descr.name, 1),
 #                 s.descr.free.neutral, 
 #                 s.descr.stress.disparaging)
 
-# Attempts at Making Automated Descriptive Table for All [FAILED]---------------
+#Attempts at Making Automated Descriptive Table for All [FAILED]---------------
 # testdata<-merge.data.frame(descr.table$Size, s.descr.free.disparaging$Size)
 # testdata<-cbind.data.frame(descr.table$Size, s.descr.free.disparaging$Size )
 # 
@@ -378,7 +378,7 @@ f.descr.table[1:4, i+1] = phase3[1:4, i] #Final
 head(phase2) 
 head(m.descr.table) #It works 
 
-#Exporting Descriptives to table folder
+#Exporting Descriptives to table folder----------------------------------------
 
 #Descriptives at the start of the experiment
 write.table(s.descr.table, 
@@ -468,28 +468,6 @@ summary(anova.result.fd)
 
 t.test(storage.free.n$start, storage.free.n$finish)
 
-#Optimising ANOVA process----------------------------------------------------
-#EDIT: For some reason, after re-testing it gives me a list of 1, instead of 13
-anova.results <- function(x) {
-  y <- stack(x) #Stacking the groups 
-  y <-aov(values ~ ind, data = y) #Running anova analysis
-  summary(y) #Print out the results in a summary form
-}
-
-#Check if it matches with the manual input. Stress Neutral Group
-anova.result.sn <- anova.results(storage.stress.n)  
-
-#Values match, The function works.
-
-#Stress Disparaging
-anova.result.sd <- anova.results(storage.stress.d)
-#No Stress Neutral
-anova.result.fn <- anova.results(storage.free.n)
-#No Stress Disparaging
-anova.result.fd <- anova.results(storage.free.d)
-  
-
-
 #Trying to Figure Out Anova [FAILED]---------------------------------------
 
 #Doesn't work
@@ -509,3 +487,36 @@ anova.result.fd <- anova.results(storage.free.d)
 #                   storage$finish[1:25])
 
       
+#Optimising ANOVA process----------------------------------------------------
+#
+#EDIT: For some reason, after re-testing it gives me a list of 1, instead of 13
+#EDIT 2: I manage to fix it, by removing summary() from the function. Don't 
+#know why it works like that
+#
+anova.results <- function(x) {
+  y <- stack(x) #Stacking the groups 
+  y <-aov(values ~ ind, data = y) #Running anova analysis
+  #Print out the results in a summary form
+}
+
+#Check if it matches with the manual input. Stress Neutral Group
+anova.result.sn <- anova.results(storage.stress.n)  
+summary(anova.result.sn)
+#Values match, The function works.
+
+#Stress Disparaging
+anova.result.sd <- anova.results(storage.stress.d)
+#No Stress Neutral
+anova.result.fn <- anova.results(storage.free.n)
+#No Stress Disparaging
+anova.result.fd <- anova.results(storage.free.d)
+
+#Figuring out where Pr(>F) value lies in the anova.result.sn
+names(anova.result.sn)
+anova.result.sn$residuals
+
+#This just makes a long list.
+experiment <- cbind(c(anova.result.sn, anova.result.sd, anova.result.fn, anova.result.fd))
+experiment <- rbind(c(anova.result.sn, anova.result.sd, anova.result.fn, anova.result.fd))
+
+
