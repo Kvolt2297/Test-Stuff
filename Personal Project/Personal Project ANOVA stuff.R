@@ -515,8 +515,22 @@ anova.result.fd <- anova.results(storage.free.d)
 names(anova.result.sn)
 anova.result.sn$residuals
 
-#This just makes a long list.
-experiment <- cbind(c(anova.result.sn, anova.result.sd, anova.result.fn, anova.result.fd))
-experiment <- rbind(c(anova.result.sn, anova.result.sd, anova.result.fn, anova.result.fd))
+#Trying to extract values within the ANOVA and put on the table [FAILED]-------
+# experiment <- cbind(c(anova.result.sn, anova.result.sd, 
+#                       anova.result.fn, anova.result.fd))
+# experiment <- rbind(c(anova.result.sn, anova.result.sd, 
+#                       anova.result.fn, anova.result.fd))
 
 
+#Found two ways to extract ANOVA values---------------------------------------
+
+#Method One
+experiment <- summary(anova.result.sn)
+str(experiment)
+experiment[[1]]$`Pr(>F)` #works out.
+
+#Method Two
+summary(anova.result.sn)[[1]][["Pr(>F)"]] # Also seems to extract Pr(>F) values
+summary(anova.result.sn)[[1]][["F value"]] #Extracts F-Values
+summary(anova.result.sn)[[2]][["F value"]]
+        
