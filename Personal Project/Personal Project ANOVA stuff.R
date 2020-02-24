@@ -16,16 +16,22 @@
 #stress/disparaging
 
 #Sorting Out Folders
-setwd("/Desktop/RStudio Files/Personal Project")
+
 working.dir <- getwd()
 
-output.folder.names <- c("figures", "data.output", "data")
+output.folder.names <- c("graphs", "tables", "data")
 # and make the folders if they don't exit yet. No need to understand this now
 for(i in 1:length(output.folder.names)) 
   if(file.exists(output.folder.names[i]) == FALSE) 
     dir.create(output.folder.names[i])
 
+path.graphs <- path.figures <- paste(working.dir, "/", 
+                               output.folder.names[1], "/", sep = "")
 
+path.tables <- paste(working.dir, "/", output.folder.names[2], "/", 
+                          sep = "")
+
+path.data <- paste(working.dir, "/", output.folder.names[3], "/", sep = "")
 
 #Making the groups. 25 participants for each (100 in total).
 total.participants <- 100  #total amount of participants in the experiment
