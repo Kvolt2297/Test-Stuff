@@ -378,9 +378,23 @@ d.storage$finish[start.stop[1]:start.stop[2]] <- round(rnorm(n.participants,
 
 
 
-#Running Anova I need to learn how to run ANOVA with 3 variables
-a.1 <- lm(storage$start[76-100] ~ storage$finish[76:100])
-a.2 <- lm(storage$finish[1:25] ~ 1)
-what<-anova(a.1)
+#Running Anova I need to learn how to run ANOVA with 3 variables---------------
+#Doesn't work
+# a.1 <- lm(storage$start[76-100] ~ storage$finish[76:100])
+# a.2 <- lm(storage$finish[1:25] ~ 1)
+# what<-anova(a.1)
+# aov(d.storage$start[1:25,], d.storage$middle[1:25,], d.storage$finish[1:25,])
+
+#Doing anova for the whole list of data... not useful, but helps to 
+#conceptualize how it should be odne. 
+
+testdata<-stack(storage) #stacks data differently. 
+anova.result <- aov(values ~ ind, data = testdata)
+summary(anova.result)
+
+#Try to do it for each group of the expeirment. 
+
+anova.result <- aov(values ~ ind, data = testdata[c(1:25, 101:125, 201:225)])
+
 
       
