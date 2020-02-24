@@ -19,12 +19,16 @@
 
 working.dir <- getwd()
 
+#Create folders Names
 output.folder.names <- c("graphs", "tables", "data")
-# and make the folders if they don't exit yet. No need to understand this now
+
+#Loop to creat the folders.
 for(i in 1:length(output.folder.names)) 
-  if(file.exists(output.folder.names[i]) == FALSE) 
+  if(file.exists(output.folder.names[i]) == FALSE) #If the folders are not 
+    #present, create the folder
     dir.create(output.folder.names[i])
 
+#Set pathing for the folders.
 path.graphs <- path.figures <- paste(working.dir, "/", 
                                output.folder.names[1], "/", sep = "")
 
@@ -33,9 +37,9 @@ path.tables <- paste(working.dir, "/", output.folder.names[2], "/",
 
 path.data <- paste(working.dir, "/", output.folder.names[3], "/", sep = "")
 
-#Making the groups. 25 participants for each (100 in total).
-total.participants <- 100  #total amount of participants in the experiment
-n.participants <- round(total.participants/4, 0) #how any participants in each group
+
+
+
 
 #Failed Attempts------------------------------------------------------------
 #My attempts at manually inputting participant number into specific groups and 
@@ -59,6 +63,12 @@ n.participants <- round(total.participants/4, 0) #how any participants in each g
 
 
 #Making a table for raw data------------------------------------------------
+
+#Making the groups. 25 participants for each (100 in total).
+total.participants <- 100  #total amount of participants in the experiment
+n.participants <- round(total.participants/4, 0) 
+#how any participants in each group. round it off to 0 s.f.
+
 
 #Making function for random data points for each of the group.
 #Likert scale only works with integers. Our Likert scale is from 
@@ -145,6 +155,11 @@ while (i == 4) { #First group - No Stress Disparaging
   break
 }
 } #Provides me with stress levels for each row and column!  
+
+#Exporting Raw Data---------------------------------- 
+write.table(storage, 
+            file = paste(working.dir, "data/RawDataSimulation.csv", sep = "/"),
+            row.names=FALSE, sep = ",")
 
 #tried to use name indexing to make R look at the name of the row and give me 
 #collumn values from that row. But since the name repeats itself 25 times, 
@@ -362,6 +377,21 @@ f.descr.table[1:4, i+1] = phase3[1:4, i] #Final
 #check if they work. Their values should match
 head(phase2) 
 head(m.descr.table) #It works 
+
+#Exporting Descriptives to table folder
+
+#Descriptives at the start of the experiment
+write.table(s.descr.table, 
+           file = paste(working.dir, "tables/Before.Exp.csv", sep = "/"),
+           row.names=FALSE, sep = ",")
+#Descriptives after TSST (only stress groups)
+write.table(m.descr.table, 
+           file = paste(working.dir, "tables/TSST.levels.csv", sep = "/"),
+           row.names=FALSE, sep = ",")
+#Descriptives after reading jokes
+write.table(f.descr.table, 
+          file = paste(working.dir, "tables/Jokes.levels.csv", sep = "/"),
+          row.names=FALSE, sep = ",")
 
 
 #Data Emulation------------------
