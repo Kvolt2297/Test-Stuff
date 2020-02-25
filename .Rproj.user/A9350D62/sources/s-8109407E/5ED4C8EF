@@ -1,0 +1,25 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1582648494172.000,
+    "dirty" : true,
+    "encoding" : "UTF-8",
+    "folds" : "47|52|69|1|\n70|28|164|1|\n165|19|181|1|\n182|65|213|1|\n214|65|215|1|\n216|41|232|1|\n233|39|241|1|\n242|42|261|1|\n262|65|325|1|\n263|15|319|0|\n326|61|349|1|\n350|54|359|1|\n360|64|404|1|\n405|49|425|1|\n426|32|454|1|\n455|39|471|1|\n472|15|481|1|\n482|29|505|1|\n506|21|512|39|\n",
+    "hash" : "0",
+    "id" : "5ED4C8EF",
+    "lastKnownWriteTime" : 1582648532,
+    "last_content_update" : 1582650325715,
+    "path" : "C:/Users/Kirill (Kvolt)/Desktop/RStudio Files/Personal Project/Volodko Personal Project.R",
+    "project_path" : "Personal Project/Volodko Personal Project.R",
+    "properties" : {
+        "cursorPosition" : "653,0",
+        "scrollLine" : "641"
+    },
+    "read_only" : false,
+    "read_only_alternatives" : [
+    ],
+    "relative_order" : 3,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

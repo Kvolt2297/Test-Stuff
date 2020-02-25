@@ -1,0 +1,26 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1582648864904.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "96|19|110|0|\n",
+    "hash" : "0",
+    "id" : "3B28E9E5",
+    "lastKnownWriteTime" : 1582649043,
+    "last_content_update" : 1582650825666,
+    "path" : "C:/Users/Kirill (Kvolt)/Desktop/RStudio Files/Personal Project/Raw Data.R",
+    "project_path" : "Personal Project/Raw Data.R",
+    "properties" : {
+        "cursorPosition" : "59,0",
+        "scrollLine" : "48",
+        "tempName" : "Untitled2"
+    },
+    "read_only" : false,
+    "read_only_alternatives" : [
+    ],
+    "relative_order" : 4,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

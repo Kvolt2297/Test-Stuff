@@ -1,0 +1,26 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1582650339952.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "49|26|53|64|\n",
+    "hash" : "1172244410",
+    "id" : "4829FCFE",
+    "lastKnownWriteTime" : 1582650411,
+    "last_content_update" : 1582650411288,
+    "path" : "C:/Users/Kirill (Kvolt)/Desktop/RStudio Files/Personal Project/Final Table.R",
+    "project_path" : "Personal Project/Final Table.R",
+    "properties" : {
+        "cursorPosition" : "18,0",
+        "scrollLine" : "12",
+        "tempName" : "Untitled1"
+    },
+    "read_only" : false,
+    "read_only_alternatives" : [
+    ],
+    "relative_order" : 10,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

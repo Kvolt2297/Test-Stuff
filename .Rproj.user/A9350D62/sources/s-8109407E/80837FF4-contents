@@ -1,0 +1,47 @@
+#Main File
+#
+# Volodko Kirill
+#
+#
+
+
+
+#Sorting Out Folders-----------------------------------------------------------
+setwd("C:/Users/Kirill (Kvolt)/Desktop/RStudio Files/Personal Project")
+working.dir <- getwd()
+
+#Create folders Names
+output.folder.names <- c("graphs", "tables", "data")
+
+#Loop to creat the folders
+for(i in 1:length(output.folder.names)) 
+  if(file.exists(output.folder.names[i]) == FALSE) #If the folders are not 
+    #present, create the folder
+    dir.create(output.folder.names[i])
+
+
+#Set pathing for the folders.
+# path.graphs <- path.figures <- paste(working.dir, "/", 
+#                                      output.folder.names[1], "/", sep = "")
+
+path.tables <- paste(working.dir, "/", output.folder.names[2], "/", 
+                     sep = "")
+
+path.data <- paste(working.dir, "/", output.folder.names[3], "/", sep = "")
+
+
+#Number of participats in the experiment---------------------------------
+#
+#How many participants in total in the experiment (equally divided into 4 
+#groups)
+#
+total.participants <- 60  #total amount of participants in the experiment
+n.participants <- round(total.participants/4, 0) 
+#how any participants in each group. round it off to 0 s.f.
+
+#Source Code-------------------------------
+source("Raw Data.R")
+source("Descriptives.R")
+source("Data Emulation.R")
+source("ANOVA Values.R")
+source("Final Table.R")

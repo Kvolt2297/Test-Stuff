@@ -1,0 +1,25 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1582648547057.000,
+    "dirty" : true,
+    "encoding" : "UTF-8",
+    "folds" : "8|20|31|0|\n",
+    "hash" : "3634177340",
+    "id" : "80837FF4",
+    "lastKnownWriteTime" : 1582626448,
+    "last_content_update" : 1582650620538,
+    "path" : "C:/Users/Kirill (Kvolt)/Desktop/RStudio Files/Personal Project/Main.R",
+    "project_path" : "Personal Project/Main.R",
+    "properties" : {
+        "cursorPosition" : "46,23",
+        "scrollLine" : "0"
+    },
+    "read_only" : false,
+    "read_only_alternatives" : [
+    ],
+    "relative_order" : 11,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}
