@@ -45,7 +45,8 @@ path.data <- paste(working.dir, "/", output.folder.names[3], "/", sep = "")
 
 
 #
-#Failed Attempts------------------------------------------------------------
+#Failed Attempts At Manually assignign participants----------------------------
+#
 #My attempts at manually inputting participant number into specific groups and 
 #then placing binding them into rows... it doesn't work like that 
 #
@@ -141,7 +142,7 @@ while (i <= 2) { #Telling the code to continue running if i is below or equals
 #Storing the data into the 3rd column - after reading jokes. I predict that each
 #group would have different stress ranges. Thus I need to assign unique stress
 #levels for four groups. 
-while (i <= 1) { #First group - Stressed Neutral
+while (i == 1) { #First group - Stressed Neutral
   storage$finish[start.stop[1]:start.stop[2]] <- stress.after.neutral
   break }
 
@@ -213,74 +214,119 @@ start.descr<-descriptives(storage$start) #testing the descriptive function.
 #
 #Descriptive calculation for every phase and group (Farmer's way)-------------
 #
-#Finding descriptives before The Experiment-----------
-#After reading neutral jokes after TSST
-s.descr.stress.neutral <- descriptives(storage$start[1:25])
-print(f.descr.free.neutral)
-
-#After reading disparaging jokes after TSST
-s.descr.stress.disparaging <- descriptives(storage$start[26:50])
-print(f.descr.free.disparaging)
-
-#After reading neutral jokes in without stress tests
-s.descr.free.neutral<- descriptives(storage$start[51:75])
-print(f.descr.free.neutral)
-
-#After reading disparaging jokes without stress tests
-s.descr.free.disparaging <- descriptives(storage$start[76:100])
-print(f.descr.free.disparaging)
+#Finding descriptives for the first phase-------------------------------------
+# s.descr.stress.neutral <- descriptives(storage$start[1:25])
+# print(s.descr.free.neutral)
+# 
+# #After reading disparaging jokes after TSST
+# s.descr.stress.disparaging <- descriptives(storage$start[26:50])
+# print(s.descr.free.disparaging)
+# 
+# #After reading neutral jokes in without stress tests
+# s.descr.free.neutral<- descriptives(storage$start[51:75])
+# print(s.descr.free.neutral)
+# 
+# #After reading disparaging jokes without stress tests
+# s.descr.free.disparaging <- descriptives(storage$start[76:100])
+# print(s.descr.free.disparaging)
 
 #
 #Finding descriptives for middle column---------------------------------------- 
-#There are missing values that I have to
-#deal with. Since there are two seprate groups, I need to figure out how to 
-#divide them apart.
-
-m.descr.stress.neutral<-descriptives(storage$middle[1:25])
-print(descr.stress.neutral)
-
-m.descr.stress.disparaging<-descriptives(storage$middle[26:50])
-print(descr.stress.disparaging)
+# 
+# m.descr.stress.neutral<-descriptives(storage$middle[1:25])
+# print(m.descr.stress.neutral)
+# 
+# m.descr.stress.disparaging<-descriptives(storage$middle[26:50])
+# print(m.descr.stress.disparaging)
 
 #
 #Finding descriptives for the last column.------------------------------------- 
+# #
+# #After reading neutral jokes after TSST
+# f.descr.stress.neutral <- descriptives(storage$finish[1:25])
+# print(f.descr.stress.neutral) #Check values
+# 
+# #After reading disparaging jokes after TSST
+# f.descr.stress.disparaging <- descriptives(storage$finish[26:50])
+# print(f.descr.stress.disparaging) #Check values
+# 
+# #After reading neutral jokes in without stress tests
+# f.descr.free.neutral<- descriptives(storage$finish[51:75])
+# print(f.descr.free.neutral) #Check values
+# 
+# #After reading disparaging jokes without stress tests
+# f.descr.free.disparaging <- descriptives(storage$finish[76:100])
+# print(f.descr.free.disparaging) #Check values
 
-#I need to have descriptives for each row in the last phase. 
-#Calculating values based on their location in the data set.
-#Maybe I can create function for what I have done below?
-
+  
+#
+#Loop for finding the descriptives for every group in every phase--------------
 for(i in 1:4) {
     #Enter for loop
-    # i <- 1 #Reset loop
+   # i <- 1 #Reset loop
     start.stop <- c( ((i-1) * n.participants + 1), i * n.participants)
+
+while(i == 1) { #Stress/Neutral Groups
+  
+    #Find the descriptives for the first 25 rows of the first phase.
+    s.descr.stress.neutral <- descriptives(
+                              storage$start[start.stop[1]:start.stop[2]])
     
-    f.descr.stress.neutral <- 
+    #Find the descriptives for the first 25 rows of the second phase.
+    m.descr.stress.neutral<-descriptives(
+                            storage$finish[start.stop[1]:start.stop[2]])
     
+    #Find the descriptives for the first 25 rows of the last phase.
+    f.descr.stress.neutral <- descriptives(
+                              storage$finish[start.stop[1]:start.stop[2]])
+    break     } 
+    
+while(i == 2) { #Stress/Disparaging Groups
+    #Find the descriptives from 26-50th row of the first phase. 
+    s.descr.stress.disparaging <- descriptives(
+                              storage$start[start.stop[1]:start.stop[2]])
+    
+    #Find the descriptives from 26-50th row of the second phase.
+    m.descr.stress.disparaging<-descriptives(
+                            storage$finish[start.stop[1]:start.stop[2]])
+  
+    #Find the descriptives from 26-50th row of the last phase.
+    f.descr.stress.disparaging  <- descriptives(
+                              storage$finish[start.stop[1]:start.stop[2]])
+    break     } 
+    
+while(i == 3) { #Stress Free/Neutral Groups
+     #Find the descriptives from 51-75th row of the first phase.
+    s.descr.free.neutral <- descriptives(
+                                  storage$start[start.stop[1]:start.stop[2]])
+  
+    #Find the descriptives from 51-75th row of the last phase.
+    f.descr.free.neutral <- descriptives(
+                              storage$finish[start.stop[1]:start.stop[2]])
+    break     }
+    
+
+while(i == 4) { #Stress Free/Disparaging Groups
+  
+     #Find the descriptives from 51-75th row of the first phase.
+     s.descr.free.disparaging <- descriptives(
+                             storage$start[start.stop[1]:start.stop[2]])
+  
+     #Find the descriptives from 576-100th row of the last phase.
+    f.descr.free.disparaging <- descriptives(
+                              storage$finish[start.stop[1]:start.stop[2]])
+    break     } 
+
 }
 
-#After reading neutral jokes after TSST
-f.descr.stress.neutral <- descriptives(storage$finish[1:25])
-print(f.descr.free.neutral) #Check values
 
-#After reading disparaging jokes after TSST
-f.descr.stress.disparaging <- descriptives(storage$finish[26:50])
-print(f.descr.free.disparaging) #Check values
-
-#After reading neutral jokes in without stress tests
-f.descr.free.neutral<- descriptives(storage$finish[51:75])
-print(f.descr.free.neutral) #Check values
-
-#After reading disparaging jokes without stress tests
-f.descr.free.disparaging <- descriptives(storage$finish[76:100])
-print(f.descr.free.disparaging) #Check values
 
 
 
 #
 #Creating a loop to craft a descriptive table for every group------------------
 
-#Making an empty tables to fill
-
+#Making an empty tables to fill them up later on.
 #Create a descriptive stable to for every group in the every phase 
 descr.name <- c("Stressed Neutral", "Stress Disparaging", "No Stress Neutral", 
                 "No Stress Disparaging")
@@ -469,10 +515,11 @@ summary(anova.result)
 
 #Note: I am using original storage data, as if I am working with raw data.
 
-storage.stress.n = d.storage[1:25, 2:4] #Stress Neutral
-storage.stress.d = d.storage[26:50, 2:4] #Stress Disparaging
-storage.free.n = d.storage[51:75, c(2,4)] #No stress Neutral. No middle column.
-storage.free.d = d.storage[76:100, c(2,4)] #No stress Disparaging. No middle.
+#Allocating values for each group. Helps me to keep track of them in the future
+storage.stress.n = a.storage[1:25, 2:4] #Stress Neutral
+storage.stress.d = a.storage[26:50, 2:4] #Stress Disparaging
+storage.free.n = a.storage[51:75, c(2,4)] #No stress Neutral. No middle column.
+storage.free.d = a.storage[76:100, c(2,4)] #No stress Disparaging. No middle.
 
 #
 #Calculating ANOVA for each group manually-----------------------------------
@@ -534,11 +581,13 @@ anova.results <- function(x) {
   #Print out the results in a summary form
 }
 
-#Check if it matches with the manual input. Stress Neutral Group
+#Check if it matches with the manual input. 
+#Stress Neutral Group
 anova.result.sn <- anova.results(storage.stress.n)  
 summary(anova.result.sn)
 #Values match, The function works.
 
+#Assigning the anova values for the rest of the groups
 #Stress Disparaging
 anova.result.sd <- anova.results(storage.stress.d)
 
@@ -564,15 +613,82 @@ anova.result.sn$residuals
 #Found two ways to extract ANOVA values---------------------------------------
 #
 #Method One
-experiment <- summary(anova.result.sn)
-str(experiment)
-potato <- experiment[[1]]$`Pr(>F)` #works out.
-data.frame(potato)
+# experiment <- summary(anova.result.sn)
+# str(experiment)
+# potato <- experiment[[1]]$`Pr(>F)` #works out.
+
 
 #Method Two
 summary(anova.result.sn)[[1]][["Pr(>F)"]] # Also seems to extract Pr(>F) values
-summary(anova.result.sn)[[1]][["F value"]] #Extracts F-Values
+#This method is more prefered by me. 
+
+#Extracts F-Values-----------------------------------------------------------
+#Creating a F.Values data-frame. Taking off any NA and rounding values by 2s.f.
+F.Values <-data.frame(c(names.groups), na.omit(round(c(
+  summary(anova.result.sn)[[1]][["F value"]], 
+  summary(anova.result.sd)[[1]][["F value"]], 
+  summary(anova.result.fn)[[1]][["F value"]],
+  summary(anova.result.fd)[[1]][["F value"]]), 2)))
+
+#Renaming the Columns for easier use in future
+colnames(F.Values) <- c("Group","F-Values")
+
+#Doing the same for significance values, without rounding
+Sig.Values <-data.frame(c(names.groups), na.omit(c(
+  summary(anova.result.sn)[[1]][["Pr(>F)"]], 
+  summary(anova.result.sd)[[1]][["Pr(>F)"]], 
+  summary(anova.result.fn)[[1]][["Pr(>F)"]],
+  summary(anova.result.fd)[[1]][["Pr(>F)"]]), ))
+
+#Renaming the Columns for easier use in future
+colnames(Sig.Values) <- c("Group","Significace")
+
 
 #Making difference in Mean and ANOVA results table-----------------------------
 
+final.table <- cbind.data.frame(Group = rep(names.groups, 1),
+                                "Mean Before Experiment" = rep(NA, 4), 
+                                "Mean After TSST" = rep(NA, 4),
+                                "Mean After Jokes" = rep(NA, 4),
+                                "F-value" = rep(NA, 4),
+                                "Significance" = rep(NA, 4))
 
+#Filling up The Final Table----------------------------------------------------
+
+#Means from the First Phase
+
+final.table$`Mean Before Experiment`[is.na #if there is an NA in those 
+                                           #rows/columns
+                                     
+                                    (final.table$`Mean Before Experiment`)] <- 
+             s.descr.table$Mean[s.descr.table$Group %in% final.table$Group]
+              #Replace them with the data from that columns, from all of these 
+              #rows that match with the rows of the other data.frame.
+
+#Means from the Second Phase (ONLY TWO GROUPS)
+
+final.table$`Mean After TSST`[is.na 
+                              (final.table$`Mean After TSST`)] <- 
+             m.descr.table$Mean[m.descr.table$Group %in% final.table$Group] 
+final.table$`Mean After TSST`[3:4] <- NA #Get's rid off repeated values.
+
+#Means from the Third Phase
+final.table$`Mean After Jokes`[is.na 
+                               (final.table$`Mean After Jokes`)] <- 
+  f.descr.table$Mean[f.descr.table$Group %in% final.table$Group]
+
+#Putting the F-Values to the Table
+final.table$`F-value`[is.na 
+                      (final.table$`F-value`)] <- 
+  F.Values$`F-Values`[F.Values$Group %in% final.table$Group]
+
+#Putting the Significance Values to the Table
+final.table$Significance[is.na 
+                      (final.table$Significance)] <- 
+  Sig.Values$Significace[Sig.Values$Group %in% final.table$Group]
+
+#Exporting the Final Table-----------------------------------------------------
+
+write.table(final.table, 
+            file = paste(working.dir, "tables/potato.csv", 
+                         sep = "/"), row.names=FALSE, sep = ",")
