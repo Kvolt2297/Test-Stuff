@@ -16,10 +16,40 @@ summary(anova.result)
 #Note: I am using original storage data, as if I am working with raw data.
 
 #Allocating values for each group. Helps me to keep track of them in the future
-storage.stress.n = a.storage[1:25, 2:4] #Stress Neutral
-storage.stress.d = a.storage[26:50, 2:4] #Stress Disparaging
-storage.free.n = a.storage[51:75, c(2,4)] #No stress Neutral. No middle column.
-storage.free.d = a.storage[76:100, c(2,4)] #No stress Disparaging. No middle.
+# storage.stress.n = a.storage[1:25, 2:4] #Stress Neutral
+# storage.stress.d = a.storage[26:50, 2:4] #Stress Disparaging
+# storage.free.n = a.storage[51:75, c(2,4)] #No stress Neutral. No middle column.
+# storage.free.d = a.storage[76:100, c(2,4)] #No stress Disparaging. No middle.
+
+#Making a loop for separating groups from data manipulation. 
+
+for(i in 1:4){
+  #enter for loop
+  start.stop <- c( ((i-1) * n.participants + 1), i * n.participants)
+# Stress Neutral
+  while(i == 1) {
+  storage.stress.n <- a.storage[start.stop[1]:start.stop[2], 2:4] 
+  
+  break
+  }
+# Stress Disparaging
+  while(i == 2){
+    storage.stress.d <- a.storage[start.stop[1]:start.stop[2], 2:4]   
+  break
+  }
+# No stress Neutral. No middle column.
+  while(i == 3){
+    storage.free.n <- a.storage[start.stop[1]:start.stop[2], c(2,4)]   
+    break
+  }
+# No stress Disparaging. No middle column.  
+  while(i == 4){
+    storage.free.d <- a.storage[start.stop[1]:start.stop[2], c(2,4)]   
+    break
+  }
+} 
+
+
 
 #
 #Calculating ANOVA for each group manually-----------------------------------

@@ -45,7 +45,7 @@ path.data <- paste(working.dir, "/", output.folder.names[3], "/", sep = "")
 
 
 #
-#Failed Attempts At Manually assignign participants----------------------------
+#Attempts At Manually assigning participants[FAILED]----------------------------
 #
 #My attempts at manually inputting participant number into specific groups and 
 #then placing binding them into rows... it doesn't work like that 
@@ -72,7 +72,7 @@ path.data <- paste(working.dir, "/", output.folder.names[3], "/", sep = "")
 
 #Making the groups. 25 participants for each (100 in total).
 total.participants <- 100  #total amount of participants in the experiment
-n.participants <- round(total.participants/4, 0) 
+n.participants <- round(total.participants/4, 0)
 #how any participants in each group. round it off to 0 s.f.
 
 
@@ -474,7 +474,7 @@ write.table(f.descr.table,
 
 #Creating an empty storage
 a.storage <- cbind.data.frame(group = rep(names.groups, rep(n.participants,4)), 
-                              start = rep(NA, 4*n.participants), 
+                              start  = rep(NA, 4*n.participants), 
                               middle = rep(NA, 4*n.participants),
                               finish = rep(NA, 4*n.participants)
 )
@@ -504,6 +504,13 @@ a.storage$finish[start.stop[1]:start.stop[2]] <- round(rnorm(n.participants,
 }
 
 #
+#Exporting rnorm data-------------------------------
+
+#Normal Distribution Data
+write.table(a.storage, 
+            file = paste(working.dir, "data/Normal Distribution.csv", 
+                         sep = "/"),
+            row.names=FALSE, sep = ",")
 #Running Anova I need to learn how to run ANOVA with 3 variables---------------
 
 testdata<-stack(a.storage) #stacks data differently. 
@@ -515,12 +522,39 @@ summary(anova.result)
 
 #Note: I am using original storage data, as if I am working with raw data.
 
-#Allocating values for each group. Helps me to keep track of them in the future
-storage.stress.n = a.storage[1:25, 2:4] #Stress Neutral
-storage.stress.d = a.storage[26:50, 2:4] #Stress Disparaging
-storage.free.n = a.storage[51:75, c(2,4)] #No stress Neutral. No middle column.
-storage.free.d = a.storage[76:100, c(2,4)] #No stress Disparaging. No middle.
+# #Allocating values for each group. Helps me to keep track of them in the future
+# storage.stress.n = a.storage[1:25, 2:4] #Stress Neutral
+# storage.stress.d = a.storage[26:50, 2:4] #Stress Disparaging
+# storage.free.n = a.storage[51:75, c(2,4)] #No stress Neutral. No middle column.
+# storage.free.d = a.storage[76:100, c(2,4)] #No stress Disparaging. No middle.
 
+#Making a loop for separating groups from data manipulation. 
+
+for(i in 1:4){
+  #enter for loop
+  start.stop <- c( ((i-1) * n.participants + 1), i * n.participants)
+  # Stress Neutral
+  while(i == 1) {
+    storage.stress.n <- a.storage[start.stop[1]:start.stop[2], 2:4] 
+    
+    break
+  }
+  # Stress Disparaging
+  while(i == 2){
+    storage.stress.d <- a.storage[start.stop[1]:start.stop[2], 2:4]   
+    break
+  }
+  # No stress Neutral. No middle column.
+  while(i == 3){
+    storage.free.n <- a.storage[start.stop[1]:start.stop[2], c(2,4)]   
+    break
+  }
+  # No stress Disparaging. No middle column.  
+  while(i == 4){
+    storage.free.d <- a.storage[start.stop[1]:start.stop[2], c(2,4)]   
+    break
+  }
+} 
 #
 #Calculating ANOVA for each group manually-----------------------------------
 #
@@ -578,7 +612,7 @@ t.test(storage.free.n$start, storage.free.n$finish)
 anova.results <- function(x) {
   y <- stack(x) #Stacking the groups 
   y <-aov(values ~ ind, data = y) #Running anova analysis
-  #Print out the results in a summary form
+ 
 }
 
 #Check if it matches with the manual input. 
@@ -693,4 +727,4 @@ write.table(final.table,
             file = paste(working.dir, "tables/Difference in Means.csv", 
                          sep = "/"), row.names=FALSE, sep = ",")
 
-#Experimentation
+

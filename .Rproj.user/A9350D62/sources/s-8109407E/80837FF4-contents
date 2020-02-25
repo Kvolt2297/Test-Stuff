@@ -11,7 +11,7 @@ setwd("C:/Users/Kirill (Kvolt)/Desktop/RStudio Files/Personal Project")
 working.dir <- getwd()
 
 #Create folders Names
-output.folder.names <- c("graphs", "tables", "data")
+output.folder.names <- c("tables", "data")
 
 #Loop to creat the folders
 for(i in 1:length(output.folder.names)) 
@@ -24,10 +24,10 @@ for(i in 1:length(output.folder.names))
 # path.graphs <- path.figures <- paste(working.dir, "/", 
 #                                      output.folder.names[1], "/", sep = "")
 
-path.tables <- paste(working.dir, "/", output.folder.names[2], "/", 
+path.tables <- paste(working.dir, "/", output.folder.names[1], "/", 
                      sep = "")
 
-path.data <- paste(working.dir, "/", output.folder.names[3], "/", sep = "")
+path.data <- paste(working.dir, "/", output.folder.names[2], "/", sep = "")
 
 
 #Number of participats in the experiment---------------------------------
@@ -35,9 +35,11 @@ path.data <- paste(working.dir, "/", output.folder.names[3], "/", sep = "")
 #How many participants in total in the experiment (equally divided into 4 
 #groups)
 #
-total.participants <- 60  #total amount of participants in the experiment
-n.participants <- round(total.participants/4, 0) 
-#how any participants in each group. round it off to 0 s.f.
+total.participants <- 67  #total amount of participants in the experiment
+n.participants <- round(total.participants/4, 0)  
+#how any participants in each group. round it off to 0 s.f. 
+#Assumption is that I always have equal amount of participants in each group.
+#I can't have half a participatns.
 
 #Source Code-------------------------------
 source("Raw Data.R")

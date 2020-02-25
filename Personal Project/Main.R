@@ -1,28 +1,49 @@
 #Main File
 #
+# Volodko Kirill
 #
 #
-#
-
-#' R Core Team (2019). R: A language and environment for statistical computing.
-#' R Foundation for
-#' Statistical Computing, Vienna, Austria. URL https://www.R-project.org/.
-#' 
-#' A BibTeX entry for LaTeX users is
-#' 
-#' @Manual{,
-#'   title = {R: A Language and Environment for Statistical Computing},
-#'   author = {{R Core Team}},
-#'   organization = {R Foundation for Statistical Computing},
-#'   address = {Vienna, Austria},
-#'   year = {2019},
-#'   url = {https://www.R-project.org/},
-#' }
 
 
 
-
+#Sorting Out Folders-----------------------------------------------------------
 setwd("C:/Users/Kirill (Kvolt)/Desktop/RStudio Files/Personal Project")
 working.dir <- getwd()
 
-source("Personal Project ANOVA stuff.R")
+#Create folders Names
+output.folder.names <- c("graphs", "tables", "data")
+
+#Loop to creat the folders
+for(i in 1:length(output.folder.names)) 
+  if(file.exists(output.folder.names[i]) == FALSE) #If the folders are not 
+    #present, create the folder
+    dir.create(output.folder.names[i])
+
+
+#Set pathing for the folders.
+# path.graphs <- path.figures <- paste(working.dir, "/", 
+#                                      output.folder.names[1], "/", sep = "")
+
+path.tables <- paste(working.dir, "/", output.folder.names[2], "/", 
+                     sep = "")
+
+path.data <- paste(working.dir, "/", output.folder.names[3], "/", sep = "")
+
+
+#Number of participats in the experiment---------------------------------
+#
+#How many participants in total in the experiment (equally divided into 4 
+#groups)
+#
+total.participants <- 67  #total amount of participants in the experiment
+n.participants <- round(total.participants/4, 0)  
+#how any participants in each group. round it off to 0 s.f. 
+#Assumption is that I always have equal amount of participants in each group.
+#I can't have half a participatns.
+
+#Source Code-------------------------------
+source("Raw Data.R")
+source("Descriptives.R")
+source("Data Emulation.R")
+source("ANOVA Values.R")
+source("Final Table.R")

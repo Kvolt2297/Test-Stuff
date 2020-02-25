@@ -21,7 +21,7 @@ summary(anova.result)
 # storage.free.n = a.storage[51:75, c(2,4)] #No stress Neutral. No middle column.
 # storage.free.d = a.storage[76:100, c(2,4)] #No stress Disparaging. No middle.
 
-#Making a loop for separating groups from data manipulation. 
+#Making a loop for separating groups from data manipulation
 
 for(i in 1:4){
   #enter for loop
