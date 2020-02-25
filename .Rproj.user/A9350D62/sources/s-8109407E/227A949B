@@ -1,0 +1,33 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1582651606312.000,
+    "dirty" : false,
+    "encoding" : "",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "227A949B",
+    "lastKnownWriteTime" : 8948706869190880860,
+    "last_content_update" : 1582651606312,
+    "path" : null,
+    "project_path" : null,
+    "properties" : {
+        "cacheKey" : "D4851A45",
+        "caption" : "storage.stress.d",
+        "contentUrl" : "grid_resource/gridviewer.html?env=&obj=storage.stress.d&cache_key=D4851A45",
+        "displayedObservations" : "25",
+        "environment" : "",
+        "expression" : "storage.stress.d",
+        "object" : "storage.stress.d",
+        "preview" : "0",
+        "totalObservations" : "25",
+        "variables" : "3"
+    },
+    "read_only" : false,
+    "read_only_alternatives" : [
+    ],
+    "relative_order" : 7,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_dataframe"
+}

@@ -1,0 +1,33 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1582651983274.000,
+    "dirty" : false,
+    "encoding" : "",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "9ECC26D5",
+    "lastKnownWriteTime" : 1582648532,
+    "last_content_update" : 1582651983274,
+    "path" : null,
+    "project_path" : null,
+    "properties" : {
+        "cacheKey" : "4EF2CA9D",
+        "caption" : "storage.free.d",
+        "contentUrl" : "grid_resource/gridviewer.html?env=&obj=storage.free.d&cache_key=4EF2CA9D",
+        "displayedObservations" : 15,
+        "environment" : "",
+        "expression" : "storage.free.d",
+        "object" : "storage.free.d",
+        "preview" : 0,
+        "totalObservations" : 15,
+        "variables" : 2
+    },
+    "read_only" : false,
+    "read_only_alternatives" : [
+    ],
+    "relative_order" : 10,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_dataframe"
+}

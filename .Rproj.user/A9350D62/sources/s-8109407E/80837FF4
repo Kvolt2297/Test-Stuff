@@ -12,13 +12,13 @@
     "path" : "C:/Users/Kirill (Kvolt)/Desktop/RStudio Files/Personal Project/Main.R",
     "project_path" : "Personal Project/Main.R",
     "properties" : {
-        "cursorPosition" : "46,23",
+        "cursorPosition" : "38,0",
         "scrollLine" : "0"
     },
     "read_only" : false,
     "read_only_alternatives" : [
     ],
-    "relative_order" : 11,
+    "relative_order" : 15,
     "source_on_save" : false,
     "source_window" : "",
     "type" : "r_source"
