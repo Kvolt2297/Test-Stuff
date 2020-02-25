@@ -19,7 +19,7 @@
 #with ANOVA results.
 
 #Sorting Out Folders-----------------------------------------------------------
-
+setwd("C:/Users/Kirill (Kvolt)/Desktop/RStudio Files/Personal Project")
 working.dir <- getwd()
 
 #Create folders Names
@@ -690,5 +690,7 @@ final.table$Significance[is.na
 #Exporting the Final Table-----------------------------------------------------
 
 write.table(final.table, 
-            file = paste(working.dir, "tables/potato.csv", 
+            file = paste(working.dir, "tables/Difference in Means.csv", 
                          sep = "/"), row.names=FALSE, sep = ",")
+
+#Experimentation
