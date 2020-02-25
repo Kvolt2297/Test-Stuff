@@ -1,6 +1,6 @@
 #Main File
 #
-# Volodko Kirill
+#Volodko Kirill
 #
 #
 # R version 3.6.2 (2019-12-12) -- "Dark and Stormy Night"
@@ -55,7 +55,7 @@ path.data <- paste(working.dir, "/", output.folder.names[2], "/", sep = "")
 #How many participants in total in the experiment (equally divided into 4 
 #groups)
 #
-total.participants <- 67  #total amount of participants in the experiment
+total.participants <- 100  #total amount of participants in the experiment
 n.participants <- round(total.participants/4, 0)  
 #how any participants in each group. round it off to 0 s.f. 
 #Assumption is that I always have equal amount of participants in each group.

@@ -6,6 +6,7 @@
 #Running Anova -------------------------------------------------
 
 #Testing how I could run ANOVA--------------------------------------
+
 testdata<-stack(a.storage) #stacks data differently. 
 anova.result <- aov(values ~ ind, data = testdata)
 summary(anova.result)
