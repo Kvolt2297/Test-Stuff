@@ -11,9 +11,12 @@
 #I will need 3 different columns for 4 tables. 
 #Columns = Stress before the experiment, stress after TSST and stress after
 #reading jokes.
-
+#
 #Tables = No stress/Neutral, No stress/disparaging, stress/neutral
 #stress/disparaging
+#
+#End Product: Table of difference in means of the estimated data
+#with ANOVA results.
 
 #Sorting Out Folders-----------------------------------------------------------
 
@@ -41,6 +44,7 @@ path.data <- paste(working.dir, "/", output.folder.names[3], "/", sep = "")
 
 
 
+#
 #Failed Attempts------------------------------------------------------------
 #My attempts at manually inputting participant number into specific groups and 
 #then placing binding them into rows... it doesn't work like that 
@@ -62,6 +66,7 @@ path.data <- paste(working.dir, "/", output.folder.names[3], "/", sep = "")
 #       cbind(stress.TSST.neutral, stress.TSST.disparaging)
 
 
+#
 #Making a table for raw data------------------------------------------------
 
 #Making the groups. 25 participants for each (100 in total).
@@ -156,6 +161,7 @@ while (i == 4) { #First group - No Stress Disparaging
 }
 } #Provides me with stress levels for each row and column!  
 
+#
 #Exporting Raw Data---------------------------------- 
 write.table(storage, 
             file = paste(working.dir, "data/RawDataSimulation.csv", sep = "/"),
@@ -172,7 +178,8 @@ stress.start <- stress.level (0, 2)
 
 
 
-#Working on Descriptives---------------------------------------------------
+#
+#Working on Creating Descriptive Table (Sample Size, Mean and SD)--------------
 
 #Manual checking of descripitve data 
 mean(storage$start) # 1.08
@@ -202,8 +209,10 @@ start.descr<-descriptives(storage$start) #testing the descriptive function.
 #The values match with my manual input. It means the descriptives() works
 
 
+#
+#
 #Descriptive calculation for every phase and group (Farmer's way)-------------
-
+#
 #Finding descriptives before The Experiment-----------
 #After reading neutral jokes after TSST
 s.descr.stress.neutral <- descriptives(storage$start[1:25])
@@ -221,6 +230,7 @@ print(f.descr.free.neutral)
 s.descr.free.disparaging <- descriptives(storage$start[76:100])
 print(f.descr.free.disparaging)
 
+#
 #Finding descriptives for middle column---------------------------------------- 
 #There are missing values that I have to
 #deal with. Since there are two seprate groups, I need to figure out how to 
@@ -232,29 +242,41 @@ print(descr.stress.neutral)
 m.descr.stress.disparaging<-descriptives(storage$middle[26:50])
 print(descr.stress.disparaging)
 
+#
 #Finding descriptives for the last column.------------------------------------- 
 
 #I need to have descriptives for each row in the last phase. 
 #Calculating values based on their location in the data set.
 #Maybe I can create function for what I have done below?
 
+for(i in 1:4) {
+    #Enter for loop
+    # i <- 1 #Reset loop
+    start.stop <- c( ((i-1) * n.participants + 1), i * n.participants)
+    
+    f.descr.stress.neutral <- 
+    
+}
+
 #After reading neutral jokes after TSST
 f.descr.stress.neutral <- descriptives(storage$finish[1:25])
-print(f.descr.free.neutral)
+print(f.descr.free.neutral) #Check values
 
 #After reading disparaging jokes after TSST
 f.descr.stress.disparaging <- descriptives(storage$finish[26:50])
-print(f.descr.free.disparaging)
+print(f.descr.free.disparaging) #Check values
 
 #After reading neutral jokes in without stress tests
 f.descr.free.neutral<- descriptives(storage$finish[51:75])
-print(f.descr.free.neutral)
+print(f.descr.free.neutral) #Check values
 
 #After reading disparaging jokes without stress tests
 f.descr.free.disparaging <- descriptives(storage$finish[76:100])
-print(f.descr.free.disparaging)
+print(f.descr.free.disparaging) #Check values
 
 
+
+#
 #Creating a loop to craft a descriptive table for every group------------------
 
 #Making an empty tables to fill
@@ -263,12 +285,12 @@ print(f.descr.free.disparaging)
 descr.name <- c("Stressed Neutral", "Stress Disparaging", "No Stress Neutral", 
                 "No Stress Disparaging")
 
-#Phase start
+#Phase Start
 s.descr.table <- cbind.data.frame(Group = rep(descr.name, 1),
                                  Size = rep(NA, 4), Mean = rep(NA, 4),
                                  Standard.Deviation = rep(NA, 4)
 )
-#Phase Middle 
+#Phase Middle (Only for Stress Group)
 m.descr.table <- cbind.data.frame(Group = descr.name[1:2],
                                 Size = rep(NA, 2), Mean = rep(NA, 2),
                                 Standard.Deviation = rep(NA, 2)
@@ -279,6 +301,7 @@ f.descr.table <- cbind.data.frame(Group = rep(descr.name, 1),
                                 Standard.Deviation = rep(NA, 4)
 )
 
+#
 #Experimenting with combining the data frames [FAILED]-------------------------
 
 #Did not work out. It is due that descr.table has more columns than other datas
@@ -288,6 +311,7 @@ f.descr.table <- cbind.data.frame(Group = rep(descr.name, 1),
 #                 s.descr.free.neutral, 
 #                 s.descr.stress.disparaging)
 
+#
 #Attempts at Making Automated Descriptive Table for All [FAILED]---------------
 # testdata<-merge.data.frame(descr.table$Size, s.descr.free.disparaging$Size)
 # testdata<-cbind.data.frame(descr.table$Size, s.descr.free.disparaging$Size )
@@ -332,7 +356,10 @@ storage$start[start.stop[1]:start.stop[2]] <- stress.start
 
 
 
+#
 #Manual Labor on assigning the Phase Start values-----------------------------
+
+#EDIT: I came up with better method in the next section,
 #Size
 # s.descr.table[1,2] = s.descr.stress.neutral[1,1]
 # s.descr.table[2,2] = s.descr.stress.disparaging[1,1]
@@ -350,6 +377,7 @@ storage$start[start.stop[1]:start.stop[2]] <- stress.start
 # s.descr.table[3,4] = s.descr.free.disparaging[1,3]
 # s.descr.table[4,4] = s.descr.free.disparaging[1,3]
 
+#
 #Looping the descriptive process--------------------------------------------
 #
 #Phase 1 has all of the groups (size, mean and sd are all equal to each other)
@@ -378,6 +406,7 @@ f.descr.table[1:4, i+1] = phase3[1:4, i] #Final
 head(phase2) 
 head(m.descr.table) #It works 
 
+#
 #Exporting Descriptives to table folder----------------------------------------
 
 #Descriptives at the start of the experiment
@@ -394,54 +423,58 @@ write.table(f.descr.table,
           row.names=FALSE, sep = ",")
 
 
+#
 #Data Emulation------------------
-d.storage <- cbind.data.frame(group = rep(names.groups, rep(n.participants,4)), 
+
+#Creating an empty storage
+a.storage <- cbind.data.frame(group = rep(names.groups, rep(n.participants,4)), 
                               start = rep(NA, 4*n.participants), 
                               middle = rep(NA, 4*n.participants),
                               finish = rep(NA, 4*n.participants)
 )
 
+#
 #Emulating data through rnorm---------------------------------------------------                                                    
+i < 1
 for(i in 1:4){
 # enter for loop
 
 start.stop <- c( ((i-1) * n.participants + 1), i * n.participants)
 # First phase for every group has all the similar data.
-d.storage$start[start.stop[1]:start.stop[2]] <- round(rnorm(n.participants, 
+a.storage$start[start.stop[1]:start.stop[2]] <- round(rnorm(n.participants, 
                                         s.descr.table$Mean[i],
-                                        s.descr.table$Standard.Deviation[i]),2)
+                                        s.descr.table$Standard.Deviation[i]),0)
 #Secobd phase only for the stressed groups
-while(i <= 2) {
-d.storage$middle[start.stop[1]:start.stop[2]] <- round(rnorm(n.participants, 
+while(i <= 2) { #I am getting Not a Number (NaN) on my 76-100 rows...
+a.storage$middle[start.stop[1]:start.stop[2]] <- round(rnorm(n.participants, 
                                         m.descr.table$Mean[i],
-                                        m.descr.table$Standard.Deviation[i]),2)
+                                        m.descr.table$Standard.Deviation[i]),0)
 break }
 
 #Third phase is for all, but every group has diffirent values
-d.storage$finish[start.stop[1]:start.stop[2]] <- round(rnorm(n.participants, 
+a.storage$finish[start.stop[1]:start.stop[2]] <- round(rnorm(n.participants, 
                                         f.descr.table$Mean[i],
-                                        f.descr.table$Standard.Deviation[i]),2)
+                                        f.descr.table$Standard.Deviation[i]),0)
 }
 
-
-
-
+#
 #Running Anova I need to learn how to run ANOVA with 3 variables---------------
 
-
-testdata<-stack(storage) #stacks data differently. 
+testdata<-stack(a.storage) #stacks data differently. 
 anova.result <- aov(values ~ ind, data = testdata)
 summary(anova.result)
 
-#Separating each group data for the upcoming analysis.------------------------- 
+#
+#Separating each group data for the ANOVA analysis.------------------------- 
 
 #Note: I am using original storage data, as if I am working with raw data.
 
-storage.stress.n = storage[1:25, 2:4] #Stress Neutral
-storage.stress.d = storage[26:50, 2:4] #Stress Disparaging
-storage.free.n = storage[51:75, c(2,4)] #No stress Neutral. Deleted the middle.
-storage.free.d = storage[76:100, c(2,4)] #No stress Disparaging. No middle.
+storage.stress.n = d.storage[1:25, 2:4] #Stress Neutral
+storage.stress.d = d.storage[26:50, 2:4] #Stress Disparaging
+storage.free.n = d.storage[51:75, c(2,4)] #No stress Neutral. No middle column.
+storage.free.d = d.storage[76:100, c(2,4)] #No stress Disparaging. No middle.
 
+#
 #Calculating ANOVA for each group manually-----------------------------------
 #
 #Anova for Stress Neutral
@@ -468,6 +501,7 @@ summary(anova.result.fd)
 
 t.test(storage.free.n$start, storage.free.n$finish)
 
+#
 #Trying to Figure Out Anova [FAILED]---------------------------------------
 
 #Doesn't work
@@ -487,6 +521,7 @@ t.test(storage.free.n$start, storage.free.n$finish)
 #                   storage$finish[1:25])
 
       
+#
 #Optimising ANOVA process----------------------------------------------------
 #
 #EDIT: For some reason, after re-testing it gives me a list of 1, instead of 13
@@ -506,8 +541,10 @@ summary(anova.result.sn)
 
 #Stress Disparaging
 anova.result.sd <- anova.results(storage.stress.d)
+
 #No Stress Neutral
 anova.result.fn <- anova.results(storage.free.n)
+
 #No Stress Disparaging
 anova.result.fd <- anova.results(storage.free.d)
 
@@ -515,6 +552,7 @@ anova.result.fd <- anova.results(storage.free.d)
 names(anova.result.sn)
 anova.result.sn$residuals
 
+#
 #Trying to extract values within the ANOVA and put on the table [FAILED]-------
 # experiment <- cbind(c(anova.result.sn, anova.result.sd, 
 #                       anova.result.fn, anova.result.fd))
@@ -522,13 +560,19 @@ anova.result.sn$residuals
 #                       anova.result.fn, anova.result.fd))
 
 
+#
 #Found two ways to extract ANOVA values---------------------------------------
-
+#
 #Method One
 experiment <- summary(anova.result.sn)
 str(experiment)
 potato <- experiment[[1]]$`Pr(>F)` #works out.
 data.frame(potato)
+
 #Method Two
 summary(anova.result.sn)[[1]][["Pr(>F)"]] # Also seems to extract Pr(>F) values
 summary(anova.result.sn)[[1]][["F value"]] #Extracts F-Values
+
+#Making difference in Mean and ANOVA results table-----------------------------
+
+
