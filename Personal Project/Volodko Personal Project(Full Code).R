@@ -19,7 +19,7 @@
 #with ANOVA results.
 
 #Sorting Out Folders-----------------------------------------------------------
-setwd("C:/Users/Kirill (Kvolt)/Desktop/RStudio Files/Personal Project")
+#setwd("C:/Users/Kirill (Kvolt)/Desktop/RStudio Files/Personal Project")
 working.dir <- getwd()
 
 #Create folders Names
