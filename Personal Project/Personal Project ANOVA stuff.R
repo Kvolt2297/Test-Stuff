@@ -527,10 +527,8 @@ anova.result.sn$residuals
 #Method One
 experiment <- summary(anova.result.sn)
 str(experiment)
-experiment[[1]]$`Pr(>F)` #works out.
-
+potato <- experiment[[1]]$`Pr(>F)` #works out.
+data.frame(potato)
 #Method Two
 summary(anova.result.sn)[[1]][["Pr(>F)"]] # Also seems to extract Pr(>F) values
 summary(anova.result.sn)[[1]][["F value"]] #Extracts F-Values
-summary(anova.result.sn)[[2]][["F value"]]
-        
