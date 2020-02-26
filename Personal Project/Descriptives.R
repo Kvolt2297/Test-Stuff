@@ -226,7 +226,7 @@ f.descr.table <- cbind.data.frame(Group = rep(descr.name, 1),
 # start.stop <- c( ((i-1) * n.participants + 1), i * n.participants)
 
 #Storing the data into the 1st columns
-storage$start[start.stop[1]:start.stop[2]] <- stress.start
+#storage$start[start.stop[1]:start.stop[2]] <- stress.start
 
 
 

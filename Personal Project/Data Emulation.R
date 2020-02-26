@@ -11,8 +11,10 @@ humor.type <- c("Neutral", "Disparaging")
   
 
 #Creating an empty storage for 2x2 variables.
-a.storage <- cbind.data.frame(stress.type = rep(stress.level, rep(n.participants*2, 2)), 
-                              humor.type  = rep(humor.type, rep(n.participants, 2)),
+a.storage <- cbind.data.frame(stress.type = rep(stress.level, 
+                                                rep(n.participants*2, 2)), 
+                              humor.type  = rep(humor.type, 
+                                                rep(n.participants, 2)),
                               start = rep(NA, 4*n.participants), 
                               middle = rep(NA, 4*n.participants),
                               finish = rep(NA, 4*n.participants))

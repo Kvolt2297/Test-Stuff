@@ -23,33 +23,33 @@
 # storage.free.n = a.storage[51:75, c(2,4)] #No stress Neutral. No middle column.
 # storage.free.d = a.storage[76:100, c(2,4)] #No stress Disparaging. No middle.
 
-#Making a loop for separating groups from data manipulation
-
-for(i in 1:4){
-  #enter for loop
-  start.stop <- c( ((i-1) * n.participants + 1), i * n.participants)
-# Stress Neutral
-  while(i == 1) {
-  storage.stress.n <- a.storage[start.stop[1]:start.stop[2], 1:5] 
-  
-  break
-  }
-# Stress Disparaging
-  while(i == 2){
-    storage.stress.d <- a.storage[start.stop[1]:start.stop[2], 1:5]   
-  break
-  }
-# No stress Neutral. 
-  while(i == 3){
-    storage.free.n <- a.storage[start.stop[1]:start.stop[2], c(1:5)]   
-    break
-  }
-# No stress Disparaging.   
-  while(i == 4){
-    storage.free.d <- a.storage[start.stop[1]:start.stop[2], c(5:5)]   
-    break
-  }
-} 
+#Making a loop for separating groups from data manipulation--------------------
+#EDIT: This loop is not useful anymore, as it was designed for one-way ANOVA
+# for(i in 1:4){
+#   #enter for loop
+#   start.stop <- c( ((i-1) * n.participants + 1), i * n.participants)
+# # Stress Neutral
+#   while(i == 1) {
+#   storage.stress.n <- a.storage[start.stop[1]:start.stop[2], 1:5] 
+#   
+#   break
+#   }
+# # Stress Disparaging
+#   while(i == 2){
+#     storage.stress.d <- a.storage[start.stop[1]:start.stop[2], 1:5]   
+#   break
+#   }
+# # No stress Neutral. 
+#   while(i == 3){
+#     storage.free.n <- a.storage[start.stop[1]:start.stop[2], c(1:5)]   
+#     break
+#   }
+# # No stress Disparaging.   
+#   while(i == 4){
+#     storage.free.d <- a.storage[start.stop[1]:start.stop[2], c(5:5)]   
+#     break
+#   }
+# } 
 
 
 #DETLA STRESS LEVELS
