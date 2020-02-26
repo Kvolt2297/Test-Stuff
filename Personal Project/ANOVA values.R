@@ -5,11 +5,12 @@
 #
 #Running Anova -------------------------------------------------
 
-#Testing how I could run ANOVA--------------------------------------
+#Testing how I could run  ANOVA--------------------------------------
 
-testdata<-stack(a.storage) #stacks data differently. 
-anova.result <- aov(values ~ ind, data = testdata)
-summary(anova.result)
+#EDIT: Since we are using 2-way ANOVA, this won't come useful for this part.
+# testdata<-stack(a.storage) #stacks data differently. 
+# anova.result <- aov(values ~ ind, data = testdata)
+# summary(anova.result)
 
 #
 #Separating each group data for the ANOVA analysis.------------------------- 
@@ -29,26 +30,27 @@ for(i in 1:4){
   start.stop <- c( ((i-1) * n.participants + 1), i * n.participants)
 # Stress Neutral
   while(i == 1) {
-  storage.stress.n <- a.storage[start.stop[1]:start.stop[2], 2:4] 
+  storage.stress.n <- a.storage[start.stop[1]:start.stop[2], 1:5] 
   
   break
   }
 # Stress Disparaging
   while(i == 2){
-    storage.stress.d <- a.storage[start.stop[1]:start.stop[2], 2:4]   
+    storage.stress.d <- a.storage[start.stop[1]:start.stop[2], 1:5]   
   break
   }
-# No stress Neutral. No middle column.
+# No stress Neutral. 
   while(i == 3){
-    storage.free.n <- a.storage[start.stop[1]:start.stop[2], c(2,4)]   
+    storage.free.n <- a.storage[start.stop[1]:start.stop[2], c(1:5)]   
     break
   }
-# No stress Disparaging. No middle column.  
+# No stress Disparaging.   
   while(i == 4){
-    storage.free.d <- a.storage[start.stop[1]:start.stop[2], c(2,4)]   
+    storage.free.d <- a.storage[start.stop[1]:start.stop[2], c(5:5)]   
     break
   }
 } 
+
 
 #DETLA STRESS LEVELS
 
@@ -56,28 +58,18 @@ for(i in 1:4){
 #Calculating ANOVA for each group manually-----------------------------------
 #
 #Anova for Stress Neutral
-anova.stress.n<-stack(storage.stress.n) #Stacking Values
-anova.result.sn <- aov(values ~ ind, data = anova.stress.n)
-summary(anova.result.sn)
-#F(2, 72) = 177, p <.05
-#
-#Anova for Stress Disparaging
-anova.stress.d<-stack(storage.stress.d)
-anova.result.sd <- aov(values ~ ind, data = anova.stress.d)
-summary(anova.result.sd)
-#F(2, 72) = 88, p <.05
-#
-anova.free.n<-stack(storage.free.n)
-anova.result.fn <- aov(values ~ ind, data = anova.free.n)
-summary(anova.result.fn)
-#F(1, 48) = 0.225, p <. 0.616
-#
-anova.free.d<-stack(storage.free.d)
-anova.result.fd <- aov(values ~ ind, data = anova.free.d)
-summary(anova.result.fd)
-#F(1, 48) = 0, p < 1
 
-t.test(storage.free.n$start, storage.free.n$finish)
+anova2.start <- aov(start~stress.type*humor.type, 
+                       data = a.storage) #Using values from norm distribution.
+summary(anova2.start)
+
+anova2.middle <- aov(middle~stress.type*humor.type, 
+                    data = a.storage)
+summary(anova2.middle)
+
+anova2.finish <- aov(finish~stress.type*humor.type, 
+                     data = a.storage)
+summary(anova2.finish)
 
 #
 #Trying to Figure Out how to run Anova [FAILED]--------------------------------
@@ -106,30 +98,32 @@ t.test(storage.free.n$start, storage.free.n$finish)
 #EDIT 2: I manage to fix it, by removing summary() from the function. Don't 
 #know why it works like that
 #
-anova.results <- function(x) {
-  y <- stack(x) #Stacking the groups 
-  y <-aov(values ~ ind, data = y) #Running anova analysis
-}
-
-#Check if it matches with the manual input. 
-#Stress Neutral Group
-anova.result.sn <- anova.results(storage.stress.n)  
-summary(anova.result.sn)
-#Values match, The function works.
-
-#Assigning the anova values for the rest of the groups
-#Stress Disparaging
-anova.result.sd <- anova.results(storage.stress.d)
-
-#No Stress Neutral
-anova.result.fn <- anova.results(storage.free.n)
-
-#No Stress Disparaging
-anova.result.fd <- anova.results(storage.free.d)
-
-#Figuring out where Pr(>F) value lies in the anova.result.sn
-names(anova.result.sn)
-anova.result.sn$residuals
+#EDIT 3: I've used this function for one-way anova. But it doesn't seem to work
+#well for two way ANOVA. I dropped it for time sake.
+# anova2.results <- function(x) {
+#   x <-aov(x~stress.type*humor.type, 
+#           data = a.storage) #Running anova analysis
+# }
+# 
+# #Check if it matches with the manual input. 
+# #Stress Neutral Group
+# anova.result.sn <- anova2.results(start)  
+# summary(anova.result.sn)
+# #Values match, The function works.
+# 
+# #Assigning the anova values for the rest of the groups
+# #Stress Disparaging
+# anova.result.sd <- anova2.results(middle)
+# 
+# #No Stress Neutral
+# anova.result.fn <- anova.results(storage.free.n)
+# 
+# #No Stress Disparaging
+# anova.result.fd <- anova.results(storage.free.d)
+# 
+# #Figuring out where Pr(>F) value lies in the anova.result.sn
+# names(anova.result.sn)
+# anova.result.sn$residuals
 
 #
 #Trying to extract values within the ANOVA and put on the table [FAILED]-------
@@ -149,26 +143,39 @@ anova.result.sn$residuals
 
 
 #Method Two [preffered]-------------------------
-summary(anova.result.sn)[[1]][["Pr(>F)"]] # Also seems to extract Pr(>F) values
+summary(anova2.start)[[1]][["Pr(>F)"]] # Also seems to extract Pr(>F) values
 #This method is more prefered by me. 
 
 #Extracts F-Values-----------------------------------------------------------
+
+anova.names <- c("Stress Type", "Humor Type", "Stress & Humor Type")
 #Creating a F.Values data-frame. Taking off any NA and rounding values by 2s.f.
-F.Values <-data.frame(c(names.groups), na.omit(round(c(
-  summary(anova.result.sn)[[1]][["F value"]], 
-  summary(anova.result.sd)[[1]][["F value"]], 
-  summary(anova.result.fn)[[1]][["F value"]],
-  summary(anova.result.fd)[[1]][["F value"]]), 2)))
+F.Values.s <-data.frame(c(anova.names), na.omit(round(
+  summary(anova2.start)[[1]][["F value"]], 2)))
+
+F.Values.m <-data.frame(c(anova.names), na.omit(round(
+  summary(anova2.middle)[[1]][["F value"]], 2)))
+
+F.Values.f <-data.frame(c(anova.names), na.omit(round(
+  summary(anova2.finish)[[1]][["F value"]], 2)))
+
 
 #Renaming the Columns for easier use in future
-colnames(F.Values) <- c("Group","F-Values")
+colnames(F.Values.s) <- c("Group","F-Value.Start")
+colnames(F.Values.m) <- c("Group","F-Value.Middle")
+colnames(F.Values.f) <- c("Group","F-Value.Finish")
 
 #Doing the same for significance values, without rounding
-Sig.Values <-data.frame(c(names.groups), na.omit(c(
-  summary(anova.result.sn)[[1]][["Pr(>F)"]], 
-  summary(anova.result.sd)[[1]][["Pr(>F)"]], 
-  summary(anova.result.fn)[[1]][["Pr(>F)"]],
-  summary(anova.result.fd)[[1]][["Pr(>F)"]]), ))
+Sig.Values.s <-data.frame(c(anova.names), na.omit(
+                            summary(anova2.start)[[1]][["Pr(>F)"]]))
 
+Sig.Values.m <-data.frame(c(anova.names), na.omit(
+                            summary(anova2.middle)[[1]][["Pr(>F)"]]))
+
+Sig.Values.f <-data.frame(c(anova.names), na.omit(
+                            summary(anova2.finish)[[1]][["Pr(>F)"]]))
 #Renaming the Columns for easier use in future
-colnames(Sig.Values) <- c("Group","Significace")
+colnames(Sig.Values.s) <- c("Group","Pr(>F).Start")
+colnames(Sig.Values.m) <- c("Group","Pr(>F).Middle")
+colnames(Sig.Values.f) <- c("Group","Pr(>F).Finish")
+

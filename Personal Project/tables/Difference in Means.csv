@@ -1,5 +1,5 @@
-"Group","Mean Before Experiment","Mean After TSST","Mean After Jokes","F-value","Significance"
-"Stressed Neutral",0.96,4.4,4.4,146,4.61886311268357e-26
-"Stress Disparaging",0.96,3.6,3.6,59.88,4.84470596597887e-16
-"No Stress Neutral",0.96,NA,1.56,19.28,6.18638240602403e-05
-"No Stress Disparaging",0.96,NA,0.92,0.03,0.856295214295773
+"Group","Mean Before Experiment","Mean After TSST","Mean After Jokes"
+"Stressed Neutral",0.84,4.4,4.4
+"Stress Disparaging",0.84,3.6,3.6
+"No Stress Neutral",0.84,3.08,1.56
+"No Stress Disparaging",0.84,3.04,0.92
