@@ -21,7 +21,7 @@ a.storage <- cbind.data.frame(stress.type = rep(stress.level,
 
 #
 #Emulating data through rnorm---------------------------------------------------                                                    
-i < 1
+#i < 1 #Reset the i
 for(i in 1:4){
   # enter for loop
   

@@ -15,8 +15,7 @@ length(storage$start)
 descriptives <- function(x) {
   
   Size <- length(x)
-  Mean <- mean(x, na.rm = TRUE) #Since we have NA's, we need to exclude them 
-  #from calculation
+  Mean <- mean(x, na.rm = TRUE)  
   Standard_Deviation <- round(sd(x, na.rm = TRUE), 2) 
   
   discriptive.info <-cbind.data.frame(

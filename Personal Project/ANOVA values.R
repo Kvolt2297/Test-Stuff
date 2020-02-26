@@ -57,7 +57,6 @@
 #
 #Calculating ANOVA for each group manually-----------------------------------
 #
-#Anova for Stress Neutral
 
 anova2.start <- aov(start~stress.type*humor.type, 
                        data = a.storage) #Using values from norm distribution.
