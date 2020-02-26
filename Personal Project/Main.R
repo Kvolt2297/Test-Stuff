@@ -56,7 +56,7 @@ path.data <- paste(working.dir, "/", output.folder.names[2], "/", sep = "")
 #groups)
 #
 total.participants <- 100  #total amount of participants in the experiment
-n.participants <- round(total.participants/4, 0)  
+n.participants <- round(total.participants/4, 0)
 #how any participants in each group. round it off to 0 s.f. 
 #Assumption is that I always have equal amount of participants in each group.
 #I can't have half a participatns.

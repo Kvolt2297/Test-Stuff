@@ -1,101 +1,101 @@
 "group","start","middle","finish"
-"Stressed Neutral",1,7,4
-"Stressed Neutral",2,7,4
-"Stressed Neutral",1,7,4
-"Stressed Neutral",0,6,6
-"Stressed Neutral",1,6,5
+"Stressed Neutral",1,6,6
 "Stressed Neutral",1,5,5
-"Stressed Neutral",2,6,5
-"Stressed Neutral",0,7,4
+"Stressed Neutral",1,8,5
+"Stressed Neutral",2,7,6
 "Stressed Neutral",1,6,3
-"Stressed Neutral",0,5,5
-"Stressed Neutral",0,8,4
-"Stressed Neutral",1,6,5
-"Stressed Neutral",1,6,3
-"Stressed Neutral",1,6,5
-"Stressed Neutral",1,5,4
-"Stressed Neutral",1,5,3
-"Stressed Neutral",1,6,4
-"Stressed Neutral",1,7,6
-"Stressed Neutral",1,6,3
+"Stressed Neutral",1,8,3
 "Stressed Neutral",1,8,5
 "Stressed Neutral",0,5,5
+"Stressed Neutral",2,5,5
+"Stressed Neutral",1,6,3
 "Stressed Neutral",1,5,5
-"Stressed Neutral",0,6,5
-"Stressed Neutral",1,5,3
+"Stressed Neutral",2,5,5
+"Stressed Neutral",0,5,3
+"Stressed Neutral",2,6,5
+"Stressed Neutral",2,5,5
+"Stressed Neutral",2,8,5
+"Stressed Neutral",1,5,5
+"Stressed Neutral",1,7,6
+"Stressed Neutral",0,6,4
 "Stressed Neutral",1,6,5
-"Stress Disparaging",1,7,5
-"Stress Disparaging",2,7,3
-"Stress Disparaging",1,6,5
-"Stress Disparaging",0,8,3
-"Stress Disparaging",1,7,5
-"Stress Disparaging",1,7,4
-"Stress Disparaging",2,7,4
+"Stressed Neutral",2,6,5
+"Stressed Neutral",0,6,3
+"Stressed Neutral",1,7,6
+"Stressed Neutral",2,6,4
+"Stressed Neutral",1,6,5
+"Stress Disparaging",1,5,3
+"Stress Disparaging",1,6,3
+"Stress Disparaging",1,5,3
+"Stress Disparaging",2,8,3
+"Stress Disparaging",1,5,4
+"Stress Disparaging",1,6,4
+"Stress Disparaging",1,6,3
 "Stress Disparaging",0,5,3
+"Stress Disparaging",2,8,2
+"Stress Disparaging",1,6,4
+"Stress Disparaging",1,6,2
+"Stress Disparaging",2,5,3
+"Stress Disparaging",0,5,3
+"Stress Disparaging",2,5,4
+"Stress Disparaging",2,7,4
+"Stress Disparaging",2,5,3
 "Stress Disparaging",1,7,5
-"Stress Disparaging",0,7,2
-"Stress Disparaging",0,5,5
-"Stress Disparaging",1,6,3
-"Stress Disparaging",1,7,2
-"Stress Disparaging",1,5,5
-"Stress Disparaging",1,7,3
-"Stress Disparaging",1,7,3
-"Stress Disparaging",1,8,3
-"Stress Disparaging",1,6,3
+"Stress Disparaging",1,6,5
+"Stress Disparaging",0,6,5
+"Stress Disparaging",1,8,2
+"Stress Disparaging",2,6,5
+"Stress Disparaging",0,6,2
 "Stress Disparaging",1,7,4
-"Stress Disparaging",1,7,4
-"Stress Disparaging",0,7,3
-"Stress Disparaging",1,7,3
-"Stress Disparaging",0,5,4
-"Stress Disparaging",1,8,3
-"Stress Disparaging",1,8,3
-"No Stress Neutral",1,3,2
+"Stress Disparaging",2,8,3
+"Stress Disparaging",1,5,4
+"No Stress Neutral",1,2,2
+"No Stress Neutral",1,3,1
+"No Stress Neutral",1,2,1
+"No Stress Neutral",2,2,0
+"No Stress Neutral",1,3,1
+"No Stress Neutral",1,3,1
+"No Stress Neutral",1,4,0
+"No Stress Neutral",0,3,1
+"No Stress Neutral",2,3,2
+"No Stress Neutral",1,4,0
+"No Stress Neutral",1,4,1
+"No Stress Neutral",2,2,0
+"No Stress Neutral",0,3,0
 "No Stress Neutral",2,3,1
-"No Stress Neutral",1,3,2
-"No Stress Neutral",0,3,1
+"No Stress Neutral",2,4,1
+"No Stress Neutral",2,3,1
+"No Stress Neutral",1,3,1
 "No Stress Neutral",1,2,0
-"No Stress Neutral",1,3,2
-"No Stress Neutral",2,4,2
-"No Stress Neutral",0,3,2
-"No Stress Neutral",1,3,1
-"No Stress Neutral",0,3,1
-"No Stress Neutral",0,3,1
-"No Stress Neutral",1,2,2
-"No Stress Neutral",1,2,2
-"No Stress Neutral",1,3,2
-"No Stress Neutral",1,4,1
-"No Stress Neutral",1,3,2
-"No Stress Neutral",1,4,1
-"No Stress Neutral",1,3,2
-"No Stress Neutral",1,4,2
-"No Stress Neutral",1,3,1
-"No Stress Neutral",0,3,2
-"No Stress Neutral",1,3,2
+"No Stress Neutral",0,2,1
+"No Stress Neutral",1,2,1
+"No Stress Neutral",2,4,1
 "No Stress Neutral",0,4,1
-"No Stress Neutral",1,2,2
-"No Stress Neutral",1,4,2
-"No Stress Disparaging",1,3,0
-"No Stress Disparaging",2,3,1
+"No Stress Neutral",1,3,0
+"No Stress Neutral",2,4,1
+"No Stress Neutral",1,4,1
 "No Stress Disparaging",1,4,0
-"No Stress Disparaging",0,4,1
-"No Stress Disparaging",1,3,1
-"No Stress Disparaging",1,3,0
-"No Stress Disparaging",2,2,0
-"No Stress Disparaging",0,3,1
-"No Stress Disparaging",1,3,2
-"No Stress Disparaging",0,3,1
-"No Stress Disparaging",0,4,0
-"No Stress Disparaging",1,3,0
-"No Stress Disparaging",1,2,1
-"No Stress Disparaging",1,3,1
 "No Stress Disparaging",1,4,1
-"No Stress Disparaging",1,3,2
-"No Stress Disparaging",1,3,2
-"No Stress Disparaging",1,4,2
 "No Stress Disparaging",1,3,0
-"No Stress Disparaging",1,2,1
-"No Stress Disparaging",0,3,2
-"No Stress Disparaging",1,2,0
-"No Stress Disparaging",0,3,1
+"No Stress Disparaging",2,2,1
+"No Stress Disparaging",1,3,0
 "No Stress Disparaging",1,3,1
-"No Stress Disparaging",1,3,2
+"No Stress Disparaging",1,3,1
+"No Stress Disparaging",0,3,2
+"No Stress Disparaging",2,3,1
+"No Stress Disparaging",1,2,1
+"No Stress Disparaging",1,2,2
+"No Stress Disparaging",2,3,1
+"No Stress Disparaging",0,4,1
+"No Stress Disparaging",2,3,0
+"No Stress Disparaging",2,4,2
+"No Stress Disparaging",2,3,0
+"No Stress Disparaging",1,4,1
+"No Stress Disparaging",1,3,0
+"No Stress Disparaging",0,4,0
+"No Stress Disparaging",1,3,1
+"No Stress Disparaging",2,3,1
+"No Stress Disparaging",0,3,2
+"No Stress Disparaging",1,3,1
+"No Stress Disparaging",2,4,1
+"No Stress Disparaging",1,3,1
