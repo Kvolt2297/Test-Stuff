@@ -40,9 +40,13 @@ head(storage) #Check if it works
 #Stress at the beggining of the experiment
 stress.start <- stress.level (0, 2)
 
-#Stress after going through Treir Social Stress Test
+#Stress after going through Trair Social Stress Test
 stress.TSST.neutral <- stress.level(4.5, 8)
 stress.TSST.disparaging <- stress.level(4.5, 8)
+
+#This group is expected to experience less stress, as the TSST is modified
+stress.lowTSST.neutral <- stress.level(2, 4)
+stress.lowTSST.disparaging <- stress.level(2, 4)
 
 #Assigning stress level after hearing jokes in four different groups
 stress.after.neutral <- stress.level(3, 6)
@@ -62,13 +66,27 @@ for(i in 1:4){
   
   #Storing the data into the 2nd column - ONLY STRESSED GROUP. That's first 
   #half of the participants
-  while (i <= 2) { #Telling the code to continue running if i is below or equals
+  while (i == 1) { #Telling the code to continue running if i is below or equals
     #to 2
-    storage$middle[start.stop[1]:start.stop[2]] <- stress.level(3,7)
+    
+    storage$middle[start.stop[1]:start.stop[2]] <- stress.TSST.neutral
+    
     break }
-  #stop running this code if I is bigger than 2. }
+
+  while (i == 2) { #First group - Stressed Disparaging
+    storage$middle[start.stop[1]:start.stop[2]] <- stress.TSST.disparaging
+    break
+  }
   
-  storage$finish[start.stop[1]:start.stop[2]] <- stress.level(3,6) 
+  while (i == 3) { #First group - No Stress Neutral
+    storage$middle[start.stop[1]:start.stop[2]] <- stress.lowTSST.neutral
+    break
+  }
+  
+  while (i == 4) { #First group - No Stress Disparaging
+    storage$middle[start.stop[1]:start.stop[2]] <- stress.lowTSST.disparaging
+    break
+  }
   
   #Storing the data into the 3rd column - after reading jokes. I predict that each
   #group would have different stress ranges. Thus I need to assign unique stress
@@ -99,12 +117,18 @@ write.table(storage,
             file = paste(working.dir, "data/RawDataSimulation.csv", sep = "/"),
             row.names=FALSE, sep = ",")
 
+head(storage) #Check jhow it works.
+
+
+
+
+#Attempt to index by using a name of the varialbe[FAILED]---------------------
+#
+#Edit: This was a very early mistake, the code transformed a lot since then...
+#
 #tried to use name indexing to make R look at the name of the row and give me 
 #collumn values from that row. But since the name repeats itself 25 times, 
+#
 # I get incorrect number of dimensions error
 #rownames(storage)
-#storage$start["Stressed neutral", ]
-
-head(storage) #Check jhow it works.
-stress.start <- stress.level (0, 2)
-
+#storage$start["Stressed neutral", ]s

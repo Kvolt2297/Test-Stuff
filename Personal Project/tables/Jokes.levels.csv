@@ -1,5 +1,5 @@
 "Group","Size","Mean","Standard.Deviation"
-"Stressed Neutral",17,4.76470588235294,0.9
-"Stress Disparaging",17,3.76470588235294,1.15
-"No Stress Neutral",17,1.11764705882353,0.7
-"No Stress Disparaging",17,1.35294117647059,0.7
+"Stressed Neutral",25,4.4,0.91
+"Stress Disparaging",25,3.6,0.96
+"No Stress Neutral",25,1.56,0.58
+"No Stress Disparaging",25,0.92,0.76

@@ -6,12 +6,16 @@
 
 #Data Emulation------------------
 
-#Creating an empty storage
-a.storage <- cbind.data.frame(group = rep(names.groups, rep(n.participants,4)), 
+stress.level <- c("High", "Low")
+humor.type <- c("Neutral", "Disparaging")
+  
+
+#Creating an empty storage for 2x2 variables.
+a.storage <- cbind.data.frame(stress.type = rep(stress.level, rep(n.participants*2, 2)), 
+                              humor.type  = rep(humor.type, rep(n.participants, 2)),
                               start = rep(NA, 4*n.participants), 
                               middle = rep(NA, 4*n.participants),
-                              finish = rep(NA, 4*n.participants)
-)
+                              finish = rep(NA, 4*n.participants))
 
 #
 #Emulating data through rnorm---------------------------------------------------                                                    
@@ -20,18 +24,20 @@ for(i in 1:4){
   # enter for loop
   
   start.stop <- c( ((i-1) * n.participants + 1), i * n.participants)
+  
   # First phase for every group has all the similar data.
+  
   a.storage$start[start.stop[1]:start.stop[2]] <- round(rnorm(n.participants, 
                                         s.descr.table$Mean[i],
                                         s.descr.table$Standard.Deviation[i]),0)                            
-  #Secobd phase only for the stressed groups
-  while(i <= 2) { #I am getting Not a Number (NaN) on my 76-100 rows...
-    a.storage$middle[start.stop[1]:start.stop[2]] <- round(rnorm(n.participants, 
+  #Secobd phase 
+  
+  a.storage$middle[start.stop[1]:start.stop[2]] <- round(rnorm(n.participants, 
                                         m.descr.table$Mean[i],
                                         m.descr.table$Standard.Deviation[i]),0)
-    break }
   
   #Third phase is for all, but every group has diffirent values
+  
   a.storage$finish[start.stop[1]:start.stop[2]] <- round(rnorm(n.participants, 
                                         f.descr.table$Mean[i],
                                         f.descr.table$Standard.Deviation[i]),0)

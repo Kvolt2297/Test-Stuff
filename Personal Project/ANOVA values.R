@@ -50,7 +50,7 @@ for(i in 1:4){
   }
 } 
 
-
+#DETLA STRESS LEVELS
 
 #
 #Calculating ANOVA for each group manually-----------------------------------

@@ -1,15 +1,15 @@
 #
 # 
-# Volodko Kirill
+#Volodko Kirill
 #
 #
 #
 #Working on Creating Descriptive Table (Sample Size, Mean and SD)--------------
 
 #Manual checking of descripitve data 
-mean(storage$start) # 1.08
-sd(storage$start) #0.631
-length(storage$start) #100
+mean(storage$start) 
+sd(storage$start) 
+length(storage$start) 
 
 #Calculating mean, sd and frequency of the the stress with a function. 
 descriptives <- function(x) {
@@ -121,7 +121,11 @@ for(i in 1:4) {
     s.descr.free.neutral <- descriptives(
       storage$start[start.stop[1]:start.stop[2]])
     
-    #Find the descriptives from 51-75th row of the last phase.
+    #Find the descriptives from 51-75th row of the second phase.
+    m.descr.free.neutral<-descriptives(
+      storage$middle[start.stop[1]:start.stop[2]])
+    
+    #Find the descriptives from 51-76th row of the last phase.
     f.descr.free.neutral <- descriptives(
       storage$finish[start.stop[1]:start.stop[2]])
     break     }
@@ -129,11 +133,15 @@ for(i in 1:4) {
   
   while(i == 4) { #Stress Free/Disparaging Groups
     
-    #Find the descriptives from 51-75th row of the first phase.
+    #Find the descriptives from 76-100th row of the first phase.
     s.descr.free.disparaging <- descriptives(
       storage$start[start.stop[1]:start.stop[2]])
     
-    #Find the descriptives from 576-100th row of the last phase.
+    #Find the descriptives from 76-100th  row of the second phase.
+    m.descr.free.disparaging<-descriptives(
+      storage$middle[start.stop[1]:start.stop[2]])
+    
+    #Find the descriptives from 76-100th row of the last phase.
     f.descr.free.disparaging <- descriptives(
       storage$finish[start.stop[1]:start.stop[2]])
     break     } 
@@ -157,8 +165,8 @@ s.descr.table <- cbind.data.frame(Group = rep(descr.name, 1),
                                   Size = rep(NA, 4), Mean = rep(NA, 4),
                                   Standard.Deviation = rep(NA, 4)
 )
-#Phase Middle (Only for Stress Group)
-m.descr.table <- cbind.data.frame(Group = descr.name[1:2],
+#Phase Middle 
+m.descr.table <- cbind.data.frame(Group = rep(descr.name, 1),
                                   Size = rep(NA, 2), Mean = rep(NA, 2),
                                   Standard.Deviation = rep(NA, 2)
 )
@@ -227,6 +235,7 @@ storage$start[start.stop[1]:start.stop[2]] <- stress.start
 #Manual Labor on assigning the Phase Start values-----------------------------
 
 #EDIT: I came up with better method in the next section,
+#
 #Size
 # s.descr.table[1,2] = s.descr.stress.neutral[1,1]
 # s.descr.table[2,2] = s.descr.stress.disparaging[1,1]
@@ -254,7 +263,9 @@ phase1 <-rbind(s.descr.stress.neutral,
                s.descr.free.disparaging)
 #Phase 2 is only applicable to stress groups. So only 2 groups would apply here
 phase2 <- rbind(m.descr.stress.neutral, 
-                m.descr.stress.disparaging)
+                m.descr.stress.disparaging,
+                m.descr.free.neutral,
+                m.descr.free.disparaging)
 
 #Last phase involves all of the groups (mean and sd are different in 
 #every group)
@@ -265,7 +276,7 @@ phase3 <- rbind(f.descr.stress.neutral,
 
 for(i in 1:3){
   s.descr.table[1:4, i+1] = phase1[1:4, i] #Start
-  m.descr.table[1:2, i+1] = phase2[1:2, i] #Middle
+  m.descr.table[1:4, i+1] = phase2[1:4, i] #Middle
   f.descr.table[1:4, i+1] = phase3[1:4, i] #Final
 }
 
